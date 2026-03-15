@@ -44,8 +44,9 @@ body {
   min-height: 100vh;
   padding-bottom: 110px;
   background-image:
-    radial-gradient(ellipse 90% 60% at -10% -5%, rgba(184,146,42,0.1) 0%, transparent 55%),
-    radial-gradient(ellipse 70% 50% at 110% 110%, rgba(122,16,32,0.15) 0%, transparent 55%);
+    radial-gradient(ellipse 90% 60% at -10% -5%, rgba(184,146,42,0.12) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 40% at 50% 40%, rgba(12,30,46,0.4) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 50% at 110% 110%, rgba(122,16,32,0.18) 0%, transparent 55%);
 }
 
 /* Grão de luxo */
@@ -56,6 +57,33 @@ body::before {
   opacity:.55;mix-blend-mode:overlay;
 }
 
+/* ─ LOADING ─────────────────────────────────────── */
+#loading {
+  position:fixed;inset:0;z-index:999;
+  background:var(--pet);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:20px;transition:opacity .5s ease;
+}
+#loading.out { opacity:0;pointer-events:none; }
+.loading-logo {
+  font-family:'Playfair Display',serif;
+  font-size:1.8rem;font-weight:900;
+  background:var(--dou-g);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.loading-dots { display:flex;gap:10px; }
+.loading-dot {
+  width:8px;height:8px;border-radius:50%;
+  background:var(--dou2);
+  animation:dot-pulse 1.2s ease-in-out infinite;
+}
+.loading-dot:nth-child(2) { animation-delay:.2s; }
+.loading-dot:nth-child(3) { animation-delay:.4s; }
+@keyframes dot-pulse {
+  0%,80%,100% { opacity:.25;transform:scale(0.8); }
+  40%          { opacity:1;transform:scale(1.1); }
+}
+
 /* ─ HEADER ─────────────────────────────────────── */
 .hdr {
   position:sticky;top:0;z-index:200;
@@ -64,7 +92,7 @@ body::before {
   -webkit-backdrop-filter:blur(28px);
   border-bottom:1px solid rgba(184,146,42,0.18);
 }
-/* Fio dourado triplo no topo: espesso · fino · fino */
+/* Fio dourado triplo no topo */
 .hdr::before {
   content:'';position:absolute;top:0;left:0;right:0;height:3px;
   background:var(--dou-g);
@@ -74,13 +102,11 @@ body::before {
   background:linear-gradient(90deg,transparent,rgba(184,146,42,0.3),transparent);
 }
 
-/* Header em duas linhas — sem crest, puramente tipográfico */
 .hdr-in {
   max-width:520px;margin:0 auto;
-  padding:14px 22px 16px;
+  padding:14px 22px 12px;
 }
 
-/* Linha 1: nome da liga */
 .hdr-liga {
   display:flex;align-items:baseline;gap:10px;
   margin-bottom:6px;
@@ -91,7 +117,6 @@ body::before {
   letter-spacing:3.5px;text-transform:uppercase;
   color:var(--dou);
 }
-/* Ornamento dourado entre palavras */
 .hdr-liga-sep {
   width:28px;height:1px;
   background:var(--dou-g);
@@ -104,9 +129,9 @@ body::before {
   color:var(--t1);letter-spacing:0.5px;line-height:1;
 }
 
-/* Linha 2: meta info */
 .hdr-meta {
   display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:10px;
 }
 .hdr-meta-l {
   font-size:0.92rem;letter-spacing:1.8px;text-transform:uppercase;
@@ -122,6 +147,18 @@ body::before {
 }
 .hdr-rod-txt {
   font-size:0.90rem;color:var(--t3);letter-spacing:0.5px;
+}
+
+/* Barra de progresso da temporada */
+.hdr-prog {
+  height:3px;background:rgba(255,255,255,0.06);
+  border-radius:2px;overflow:hidden;
+}
+.hdr-prog-fill {
+  height:100%;border-radius:2px;
+  background:var(--dou-g);
+  transition:width 1.2s cubic-bezier(.4,0,.2,1);
+  width:0%;
 }
 
 /* ─ NAV ─────────────────────────────────────────── */
@@ -148,10 +185,22 @@ body::before {
   padding:15px 4px 13px;min-height:72px;cursor:pointer;
   display:flex;flex-direction:column;align-items:center;gap:6px;
   transition:color .22s;
+  position:relative;
 }
-.ntab .i { font-size:1.8rem;line-height:1; }
+/* Indicador da tab ativa */
+.ntab::before {
+  content:'';position:absolute;top:-2px;left:50%;transform:translateX(-50%);
+  width:0;height:2px;border-radius:0 0 2px 2px;
+  background:var(--dou3);
+  transition:width .25s ease;
+}
+.ntab.on::before { width:32px; }
+.ntab .i { font-size:1.8rem;line-height:1;transition:transform .22s; }
 .ntab.on { color:var(--dou3); }
-.ntab.on .i { filter:drop-shadow(0 0 10px rgba(184,146,42,.75)); }
+.ntab.on .i {
+  filter:drop-shadow(0 0 10px rgba(184,146,42,.75));
+  transform:translateY(-2px) scale(1.08);
+}
 
 /* ─ WRAP ─────────────────────────────────────────── */
 .wrap {
@@ -195,11 +244,18 @@ body::before {
     0 16px 60px rgba(0,0,0,0.5),
     0 1px 0 rgba(184,146,42,0.2) inset;
 }
-/* Listra topo */
+/* Listra topo com shimmer */
 .mvp-card::after {
   content:'';position:absolute;top:0;left:0;right:0;height:4px;
   background:linear-gradient(90deg,var(--car2),var(--dou),var(--dou4),var(--dou),var(--car2));
+  background-size:200% 100%;
+  animation:shimmer 3s ease-in-out infinite;
 }
+@keyframes shimmer {
+  0%,100% { background-position:0% 0%; }
+  50%      { background-position:100% 0%; }
+}
+
 /* Watermark grande */
 .mvp-wm {
   position:absolute;right:-20px;bottom:-30px;
@@ -218,15 +274,18 @@ body::before {
   letter-spacing:2.5px;text-transform:uppercase;
   padding:7px 16px;border-radius:30px;
   margin-bottom:22px;
+  animation:tag-glow 2.5s ease-in-out infinite;
+}
+@keyframes tag-glow {
+  0%,100% { box-shadow:0 0 0 rgba(184,146,42,0); }
+  50%      { box-shadow:0 0 18px rgba(184,146,42,0.3); }
 }
 
-/* Emoji grande + dados lado a lado */
 .mvp-corpo { display:flex;align-items:center;gap:22px; }
 .mvp-emo {
   font-size:4.5rem;line-height:1;flex-shrink:0;
   filter:drop-shadow(0 4px 16px rgba(0,0,0,0.5));
 }
-.mvp-dados {}
 .mvp-nome {
   font-family:'Playfair Display',serif;
   font-size:1.45rem;font-weight:900;line-height:1.15;
@@ -263,6 +322,12 @@ body::before {
   background:rgba(122,16,32,0.2);
   border:1px solid rgba(156,24,40,0.45);
   box-shadow:0 8px 32px rgba(122,16,32,0.25);
+  position:relative;overflow:hidden;
+}
+/* Faixa vermelha no topo */
+.lant-card::before {
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--car),var(--car3),var(--car));
 }
 .lant-emo { font-size:3.2rem;flex-shrink:0; }
 .lant-dados { flex:1; }
@@ -334,24 +399,41 @@ body::before {
 }
 
 /* ══════════════════════════════════════════
-   PÓDIO TOP 3
+   PÓDIO TOP 3 — Com alturas escalonadas
 ══════════════════════════════════════════ */
 .podio {
-  display:grid;grid-template-columns:1fr 1.2fr 1fr;
+  display:grid;grid-template-columns:1fr 1.15fr 1fr;
   gap:10px;align-items:flex-end;margin-bottom:12px;
 }
 .pod {
   border-radius:20px;padding:20px 10px 18px;
   text-align:center;border:1px solid var(--bx);
   background:var(--gl);backdrop-filter:blur(12px);
+  transition:transform .2s,box-shadow .2s;
+  position:relative;overflow:hidden;
 }
+/* Faixa colorida no topo de cada pódio */
+.pod::before {
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+}
+.pod.ou::before { background:var(--dou-g); }
+.pod.pr::before { background:linear-gradient(90deg,#7A9EA0,#B8CCCC,#7A9EA0); }
+.pod.br::before { background:linear-gradient(90deg,#8A5C3A,#C87848,#8A5C3A); }
+
 .pod.ou {
   border-color:rgba(184,146,42,0.42);
   background:rgba(184,146,42,0.12);
-  box-shadow:0 8px 40px rgba(184,146,42,0.15);
+  box-shadow:0 8px 40px rgba(184,146,42,0.15),0 0 0 1px rgba(184,146,42,0.2);
+  min-height:220px;
 }
-.pod.pr { border-color:rgba(170,190,195,0.2); }
-.pod.br { border-color:rgba(170,105,55,0.22); }
+.pod.pr {
+  border-color:rgba(170,190,195,0.2);
+  min-height:190px;
+}
+.pod.br {
+  border-color:rgba(170,105,55,0.22);
+  min-height:165px;
+}
 .pod-me  { font-size:2rem;margin-bottom:6px; }
 .pod-emo { font-size:1.6rem;margin-bottom:8px; }
 .pod-nom {
@@ -378,9 +460,10 @@ body::before {
   background:var(--gl);border:1px solid var(--bx);
   backdrop-filter:blur(12px);
   position:relative;overflow:hidden;
-  transition:transform .14s;
+  transition:transform .18s,box-shadow .18s;
 }
 .rk:active { transform:scale(0.984); }
+.rk:hover  { transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.35); }
 .rk.p1 { border-color:rgba(184,146,42,0.38);background:rgba(184,146,42,0.09); }
 .rk.p2 { border-color:rgba(170,190,195,0.2); }
 .rk.p3 { border-color:rgba(170,105,55,0.22); }
@@ -423,9 +506,27 @@ body::before {
 /* ══════════════════════════════════════════
    RODADAS
 ══════════════════════════════════════════ */
+/* Container com fade nas bordas */
+.pills-wrap {
+  position:relative;margin-bottom:22px;
+}
+.pills-wrap::before,
+.pills-wrap::after {
+  content:'';position:absolute;top:0;bottom:6px;width:24px;
+  z-index:2;pointer-events:none;
+}
+.pills-wrap::before {
+  left:0;
+  background:linear-gradient(90deg,var(--pet) 30%,transparent);
+}
+.pills-wrap::after {
+  right:0;
+  background:linear-gradient(-90deg,var(--pet) 30%,transparent);
+}
 .pills {
   display:flex;gap:10px;overflow-x:auto;
-  padding-bottom:6px;margin-bottom:22px;
+  padding-bottom:6px;
+  scrollbar-width:none;
 }
 .pills::-webkit-scrollbar { display:none; }
 .pill {
@@ -441,7 +542,7 @@ body::before {
   box-shadow:0 4px 18px rgba(122,16,32,0.5);
 }
 
-/* MVP rodada — mesmo peso e estrutura do card principal */
+/* MVP rodada */
 .mvpr {
   border-radius:24px;
   padding:30px 26px;
@@ -481,7 +582,6 @@ body::before {
   font-size:4rem;line-height:1;flex-shrink:0;
   filter:drop-shadow(0 4px 14px rgba(0,0,0,0.45));
 }
-.mvpr-dados {}
 .mvpr-nome {
   font-family:'Playfair Display',serif;
   font-size:1.5rem;font-weight:900;line-height:1.1;
@@ -502,7 +602,14 @@ body::before {
   background:rgba(12,30,46,0.75);
   border:1px solid rgba(255,255,255,0.07);
   box-shadow:inset 0 1px 0 rgba(255,255,255,0.04);
+  position:relative;overflow:hidden;
 }
+/* Acento colorido no topo dos sbox */
+.sbox::before {
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+}
+.sbox-avg::before { background:linear-gradient(90deg,#3A70D0,#6090E0,#3A70D0); }
+.sbox-mit::before { background:linear-gradient(90deg,var(--dou),var(--dou3),var(--dou)); }
 .sbox-lb {
   font-size:0.95rem;font-weight:700;
   letter-spacing:1.5px;text-transform:uppercase;
@@ -520,9 +627,10 @@ body::before {
   padding:17px 20px;border-radius:20px;
   background:rgba(12,30,46,0.7);
   border:1px solid rgba(255,255,255,0.06);
-  transition:transform .12s;
+  transition:transform .12s,box-shadow .12s;
 }
 .ritem:active { transform:scale(0.985); }
+.ritem:hover  { transform:translateY(-1px);box-shadow:0 4px 20px rgba(0,0,0,0.3); }
 .ritem.mlinha {
   border-color:rgba(184,146,42,0.35);
   background:rgba(184,146,42,0.09);
@@ -555,7 +663,17 @@ body::before {
   background:rgba(12,30,46,0.75);
   border:1px solid rgba(255,255,255,0.07);
   box-shadow:inset 0 1px 0 rgba(255,255,255,0.04);
+  position:relative;overflow:hidden;
+  transition:transform .2s,box-shadow .2s;
 }
+.tbox:hover { transform:translateY(-2px); }
+/* Faixa topo tbox */
+.tbox::before {
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+}
+.tbox.td::before { background:var(--dou-g); }
+.tbox.tv::before { background:linear-gradient(90deg,#2A8C4A,#5EC87A,#2A8C4A); }
+.tbox.tc::before { background:linear-gradient(90deg,var(--car),var(--car3),var(--car)); }
 .tbox.td {
   border-color:rgba(184,146,42,0.38);
   background:rgba(184,146,42,0.1);
@@ -645,7 +763,7 @@ body::before {
 .cc { background:rgba(122,16,32,0.2);border:1px solid rgba(156,24,40,0.45);color:var(--car3); }
 .c0 { color:var(--t3);opacity:.4;font-size:0.95rem; }
 
-/* Pontos na tabela — destaque principal */
+/* Pontos na tabela */
 .tl-pts {
   font-family:'Playfair Display',serif;
   font-size:1.5rem;font-weight:900;text-align:right;
@@ -667,6 +785,16 @@ body::before {
 </head>
 <body>
 
+<!-- LOADING ─────────────────────────────────────── -->
+<div id="loading">
+  <div class="loading-logo">Supertecnicos</div>
+  <div class="loading-dots">
+    <div class="loading-dot"></div>
+    <div class="loading-dot"></div>
+    <div class="loading-dot"></div>
+  </div>
+</div>
+
 <!-- HEADER ────────────────────────────────────── -->
 <div class="hdr">
   <div class="hdr-in">
@@ -681,6 +809,9 @@ body::before {
         <span class="hdr-rod-num" id="hdr-rod-num">Rodada —</span>
         <span class="hdr-rod-txt" id="hdr-rod-txt">de 38</span>
       </div>
+    </div>
+    <div class="hdr-prog">
+      <div class="hdr-prog-fill" id="hdr-prog-fill"></div>
     </div>
   </div>
 </div>
@@ -705,7 +836,9 @@ body::before {
 
   <!-- ▌ RODADAS ────────────────────────────────── -->
   <div class="pg" id="pg-rodadas">
-    <div class="pills" id="pills"></div>
+    <div class="pills-wrap">
+      <div class="pills" id="pills"></div>
+    </div>
     <div id="corpo-rod"></div>
   </div>
 
@@ -721,77 +854,126 @@ body::before {
 
 <!-- NAV ────────────────────────────────────────── -->
 <div class="nav">
-  <div class="nav-g">
-    <button class="ntab on" onclick="ir('inicio',this)">
+  <div class="nav-g" id="nav-g">
+    <button class="ntab on" data-page="inicio">
       <span class="i">🏠</span>Início
     </button>
-    <button class="ntab" onclick="ir('rodadas',this)">
+    <button class="ntab" data-page="rodadas">
       <span class="i">📅</span>Rodadas
     </button>
-    <button class="ntab" onclick="ir('analise',this)">
+    <button class="ntab" data-page="analise">
       <span class="i">📊</span>Análise
     </button>
   </div>
 </div>
 
 <script>
-// ── CARREGAR CSV ───────────────────────────────────────────
-async function carregarDados() {
-  const resp = await fetch('dados.csv');
-  const txt  = await resp.text();
-  const linhas = txt.trim().split('\n').slice(1); // pula cabeçalho
-  return linhas.map(l => {
-    const [rodada, time, pontos] = l.split(',');
-    return [parseInt(rodada), time.trim(), parseFloat(pontos)];
-  });
-}
+(async function () {
+  // ── CONSTANTES ─────────────────────────────────────────────
+  const LIMIAR_MITOU = 80;
+  const TOTAL_RODADAS = 38;
 
-async function iniciar() {
-  const D = await carregarDados();
-
-  const EMO={
-    'Icebergteam':'🧊','Sons of Númenor':'🛡️','Ironverdict':'🪽',
-    'CEEC':'⚔️','Otopatamá':'⛩️','Andorinha Jr':'🐦',
-    'Andorinha':'🦅','Varelitas':'🦊','Lobonegro':'🐺'
+  const EMO = {
+    'Icebergteam':  '🧊',
+    'Sons of Númenor': '🛡️',
+    'Ironverdict':  '🪽',
+    'CEEC':         '⚔️',
+    'Otopatamá':    '⛩️',
+    'Andorinha Jr': '🐦',
+    'Andorinha':    '🦅',
+    'Varelitas':    '🦊',
+    'Lobonegro':    '🐺',
   };
-  const CL=[
+
+  const CORES_TIMES = [
     '#D4AC48','#7EC0B0','#6090E0','#C06060',
-    '#9A7BBB','#70BB70','#DD9055','#55B5CC','#CC6888'
+    '#9A7BBB','#70BB70','#DD9055','#55B5CC','#CC6888',
   ];
-  const TIMES=[...new Set(D.map(d=>d[1]))];
-  const RODS =[...new Set(D.map(d=>d[0]))].sort((a,b)=>a-b);
-  const MIT=80;
-  const TOTAL_RODS = 38;
 
-  const COR={};TIMES.forEach((t,i)=>COR[t]=CL[i%CL.length]);
+  const fmt = v => v.toFixed(2);
 
-  const pts =t=>D.filter(d=>d[1]===t).map(d=>d[2]);
-  const tot =t=>pts(t).reduce((a,b)=>a+b,0);
-  const med =t=>{const v=pts(t);return v.reduce((a,b)=>a+b,0)/v.length;};
-  const fmt =v=>v.toFixed(2);
+  // ── CARREGAR CSV ────────────────────────────────────────────
+  async function carregarDados() {
+    const resp = await fetch('dados.csv');
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    const txt = await resp.text();
+    return txt.trim().split('\n').slice(1).map(l => {
+      const [rodada, time, pontos] = l.split(',');
+      return [parseInt(rodada, 10), time.trim(), parseFloat(pontos)];
+    });
+  }
 
-  const cl   =TIMES.map(t=>({t,tot:tot(t),med:med(t)})).sort((a,b)=>b.tot-a.tot);
-  const tOrd =[...D].sort((a,b)=>b[2]-a[2]);
-  const mits =D.filter(d=>d[2]>=MIT).sort((a,b)=>b[2]-a[2]);
+  // ── INICIALIZAR ─────────────────────────────────────────────
+  let D;
+  try {
+    D = await carregarDados();
+  } catch (err) {
+    document.getElementById('loading').innerHTML = `
+      <div style="text-align:center;padding:32px 24px;color:var(--t3)">
+        <div style="font-size:3rem;margin-bottom:16px">⚠️</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--t1);margin-bottom:8px">
+          Erro ao carregar dados
+        </div>
+        <div style="font-size:0.95rem">${err.message}</div>
+      </div>`;
+    return;
+  }
 
-  const cMVP={},cMit={},cLan={};
-  TIMES.forEach(t=>{cMVP[t]=0;cMit[t]=0;cLan[t]=0;});
-  RODS.forEach(r=>{
-    const rd=D.filter(d=>d[0]===r).sort((a,b)=>b[2]-a[2]);
-    if(rd.length){cMVP[rd[0][1]]++;cLan[rd[rd.length-1][1]]++;}
-    rd.forEach(d=>{if(d[2]>=MIT)cMit[d[1]]++;});
+  const TIMES = [...new Set(D.map(d => d[1]))];
+  const RODS  = [...new Set(D.map(d => d[0]))].sort((a, b) => a - b);
+
+  // Cor por time
+  const COR = {};
+  TIMES.forEach((t, i) => COR[t] = CORES_TIMES[i % CORES_TIMES.length]);
+
+  // ── PRÉ-COMPUTAR ESTATÍSTICAS DOS TIMES ────────────────────
+  // Evita recalcular filtros/somas a cada chamada
+  const statTime = {};
+  TIMES.forEach(t => {
+    const ptsArr = D.filter(d => d[1] === t).map(d => d[2]);
+    const total  = ptsArr.reduce((a, b) => a + b, 0);
+    statTime[t]  = { pts: ptsArr, tot: total, med: total / ptsArr.length };
   });
 
-  // Atualiza cabeçalho com rodada atual
-  const ultimaRod = RODS[RODS.length-1];
+  // Classificação por total
+  const cl = TIMES
+    .map(t => ({ t, tot: statTime[t].tot, med: statTime[t].med }))
+    .sort((a, b) => b.tot - a.tot);
+
+  // Todas as partidas ordenadas por pontuação
+  const tOrd = [...D].sort((a, b) => b[2] - a[2]);
+
+  // Registros acima do limiar (mitou)
+  const mits = D.filter(d => d[2] >= LIMIAR_MITOU).sort((a, b) => b[2] - a[2]);
+
+  // Contadores por time
+  const cMVP = {}, cMit = {}, cLan = {};
+  TIMES.forEach(t => { cMVP[t] = 0; cMit[t] = 0; cLan[t] = 0; });
+  RODS.forEach(r => {
+    const rd = D.filter(d => d[0] === r).sort((a, b) => b[2] - a[2]);
+    if (rd.length) {
+      cMVP[rd[0][1]]++;
+      cLan[rd[rd.length - 1][1]]++;
+    }
+    rd.forEach(d => { if (d[2] >= LIMIAR_MITOU) cMit[d[1]]++; });
+  });
+
+  // ── CABEÇALHO ──────────────────────────────────────────────
+  const ultimaRod = RODS[RODS.length - 1];
   document.getElementById('hdr-rod-num').textContent = `Rodada ${ultimaRod}`;
-  document.getElementById('hdr-rod-txt').textContent = `de ${TOTAL_RODS}`;
+  document.getElementById('hdr-rod-txt').textContent = `de ${TOTAL_RODADAS}`;
+
+  // Barra de progresso da temporada
+  const pctTemporada = ((ultimaRod / TOTAL_RODADAS) * 100).toFixed(1);
+  requestAnimationFrame(() => {
+    document.getElementById('hdr-prog-fill').style.width = pctTemporada + '%';
+  });
 
   // ── INÍCIO ─────────────────────────────────────────────────
-  function buildI(){
-    const top=tOrd[0];
-    const el=document.getElementById('el-mvp');
-    el.innerHTML+=`
+  function buildI() {
+    const top = tOrd[0];
+    const elMvp = document.getElementById('el-mvp');
+    elMvp.innerHTML += `
       <div class="mvp-tag">⭐ MVP da Liga</div>
       <div class="mvp-corpo">
         <div class="mvp-emo">${EMO[top[1]]}</div>
@@ -804,8 +986,8 @@ async function iniciar() {
         </div>
       </div>`;
 
-    const ul=cl[cl.length-1];
-    document.getElementById('el-lant').innerHTML=`
+    const ul = cl[cl.length - 1];
+    document.getElementById('el-lant').innerHTML = `
       <div class="lant-emo">🔦</div>
       <div class="lant-dados">
         <div class="lant-etiq">Lanterna do Grupo</div>
@@ -817,15 +999,15 @@ async function iniciar() {
         <div class="lant-lb">no total</div>
       </div>`;
 
-    const n=mits.length;
-    document.getElementById('el-mitou').innerHTML=`
+    const n = mits.length;
+    document.getElementById('el-mitou').innerHTML = `
       <div class="mitou-topo">
-        <div class="mitou-tit">🔥 Mitou! — acima de 80</div>
-        <div class="mitou-cnt">${n} ${n===1?'vez':'vezes'}</div>
+        <div class="mitou-tit">🔥 Mitou! — acima de ${LIMIAR_MITOU}</div>
+        <div class="mitou-cnt">${n} ${n === 1 ? 'vez' : 'vezes'}</div>
       </div>
-      ${n===0
-        ?'<div style="font-size:1.05rem;color:var(--t3)">Nenhuma mitada ainda.</div>'
-        :mits.map(e=>`
+      ${n === 0
+        ? '<div style="font-size:1.05rem;color:var(--t3)">Nenhuma mitada ainda.</div>'
+        : mits.map(e => `
           <div class="mit-row">
             <div class="mit-emo">${EMO[e[1]]}</div>
             <div class="mit-info">
@@ -835,32 +1017,38 @@ async function iniciar() {
             <div class="mit-pts">${fmt(e[2])}<span class="tag-mitou">Mitou</span></div>
           </div>`).join('')}`;
 
-    const t3=cl.slice(0,3);
-    const ms=['🥇','🥈','🥉'],cs=['ou','pr','br'];
-    document.getElementById('el-podio').innerHTML=[1,0,2].map(i=>{
-      const it=t3[i];if(!it)return'';
-      return`<div class="pod ${cs[i]}" style="order:${i===0?1:i===1?0:2}">
-        <div class="pod-me">${ms[i]}</div>
+    // Pódio — 1º fica no centro (order CSS), 2º à esquerda, 3º à direita
+    const t3 = cl.slice(0, 3);
+    const medalhas = ['🥇', '🥈', '🥉'];
+    const classes  = ['ou', 'pr', 'br'];
+    // Renderiza na ordem: 2º, 1º, 3º para o layout visual correto
+    document.getElementById('el-podio').innerHTML = [1, 0, 2].map(i => {
+      const it = t3[i];
+      if (!it) return '';
+      const cssOrder = i === 0 ? 1 : i === 1 ? 0 : 2;
+      return `<div class="pod ${classes[i]}" style="order:${cssOrder}">
+        <div class="pod-me">${medalhas[i]}</div>
         <div class="pod-emo">${EMO[it.t]}</div>
         <div class="pod-nom">${it.t}</div>
         <div class="pod-tot">${fmt(it.tot)}</div>
         <div class="pod-med">média ${fmt(it.med)}</div>
-      </div>`;}).join('');
+      </div>`;
+    }).join('');
 
-    const mx=cl[0].tot;
-    document.getElementById('el-rank').innerHTML=cl.map((it,i)=>{
-      const pct=(it.tot/mx*100).toFixed(1);
-      const kc=i===0?'p1':i===1?'p2':i===2?'p3':i===cl.length-1?'pl':'';
-      const ic=i===0?'👑':i===1?'🥈':i===2?'🥉':i===cl.length-1?'🔦':'';
-      const hm=cMit[it.t]>0;
-      return`<div class="rk ${kc}">
-        <div class="rk-n">${i+1}</div>
+    const mx = cl[0].tot;
+    document.getElementById('el-rank').innerHTML = cl.map((it, i) => {
+      const pct = (it.tot / mx * 100).toFixed(1);
+      const kc  = i === 0 ? 'p1' : i === 1 ? 'p2' : i === 2 ? 'p3' : i === cl.length - 1 ? 'pl' : '';
+      const ic  = i === 0 ? '👑' : i === 1 ? '🥈' : i === 2 ? '🥉' : i === cl.length - 1 ? '🔦' : '';
+      const hm  = cMit[it.t] > 0;
+      return `<div class="rk ${kc}">
+        <div class="rk-n">${i + 1}</div>
         <div class="rk-emo">${EMO[it.t]}</div>
         <div class="rk-bd">
           <div class="rk-nm">${it.t} ${ic}</div>
           <div class="rk-mt">
             <span>Média ${fmt(it.med)}</span>
-            ${hm?`<span class="tmit">🔥 Mitou ${cMit[it.t]===1?'uma vez':cMit[it.t]+' vezes'}</span>`:''}
+            ${hm ? `<span class="tmit">🔥 Mitou ${cMit[it.t] === 1 ? 'uma vez' : cMit[it.t] + ' vezes'}</span>` : ''}
           </div>
         </div>
         <div class="rk-rt">
@@ -870,35 +1058,50 @@ async function iniciar() {
         <div class="rk-bar">
           <div class="rk-barf" style="width:${pct}%;background:${COR[it.t]}"></div>
         </div>
-      </div>`;}).join('');
+      </div>`;
+    }).join('');
   }
 
   // ── RODADAS ────────────────────────────────────────────────
-  let cr=RODS[RODS.length-1];
+  let rodadaAtual = RODS[RODS.length - 1];
 
-  function buildR(){
-    document.getElementById('pills').innerHTML=RODS.map(r=>
-      `<button class="pill${r===cr?' on':''}" onclick="pickR(${r})">Rodada ${r}</button>`
+  function buildR() {
+    document.getElementById('pills').innerHTML = RODS.map(r =>
+      `<button class="pill${r === rodadaAtual ? ' on' : ''}" data-rod="${r}">Rodada ${r}</button>`
     ).join('');
+    scrollPillAtiva();
     renderR();
   }
 
-  function pickR(r){
-    cr=r;
-    document.querySelectorAll('.pill').forEach((b,i)=>b.classList.toggle('on',RODS[i]===r));
+  function scrollPillAtiva() {
+    const pill = document.querySelector('.pill.on');
+    if (pill) pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  }
+
+  function selecionarRodada(r) {
+    rodadaAtual = r;
+    document.querySelectorAll('.pill').forEach(b => {
+      b.classList.toggle('on', parseInt(b.dataset.rod, 10) === r);
+    });
+    scrollPillAtiva();
     renderR();
   }
 
-  window.pickR = pickR;
+  // Delegação de eventos para pills
+  document.getElementById('pills').addEventListener('click', e => {
+    const pill = e.target.closest('.pill');
+    if (pill) selecionarRodada(parseInt(pill.dataset.rod, 10));
+  });
 
-  function renderR(){
-    const r=cr;
-    const ents=D.filter(d=>d[0]===r).sort((a,b)=>b[2]-a[2]);
-    const mvp=ents[0],mx=mvp[2];
-    const avg=ents.reduce((a,d)=>a+d[2],0)/ents.length;
-    const nm=ents.filter(e=>e[2]>=MIT).length;
+  function renderR() {
+    const r    = rodadaAtual;
+    const ents = D.filter(d => d[0] === r).sort((a, b) => b[2] - a[2]);
+    const mvp  = ents[0];
+    const mx   = mvp[2];
+    const avg  = ents.reduce((a, d) => a + d[2], 0) / ents.length;
+    const nm   = ents.filter(e => e[2] >= LIMIAR_MITOU).length;
 
-    document.getElementById('corpo-rod').innerHTML=`
+    document.getElementById('corpo-rod').innerHTML = `
       <div class="mvpr">
         <div class="mvpr-tag">⭐ MVP — Rodada ${r}</div>
         <div class="mvpr-corpo">
@@ -911,38 +1114,39 @@ async function iniciar() {
         </div>
       </div>
       <div class="s2">
-        <div class="sbox">
+        <div class="sbox sbox-avg">
           <div class="sbox-lb">📊 Média da Rodada</div>
           <div class="sbox-v" style="color:#6090E0">${fmt(avg)}</div>
         </div>
-        <div class="sbox">
+        <div class="sbox sbox-mit">
           <div class="sbox-lb">🔥 Mitou!</div>
           <div class="sbox-v" style="color:var(--dou3)">${nm}</div>
         </div>
       </div>
       <div class="stit"><span>Resultado — Rodada ${r}</span></div>
       <div class="rlist">
-        ${ents.map((e,i)=>{
-          const pct=(e[2]/mx*100).toFixed(1);
-          const m=e[2]>=MIT;
-          const cp=i===0?'var(--dou3)':i===1?'#B8CCCC':i===2?'#C87848':'var(--t3)';
-          return`<div class="ritem${m?' mlinha':''}">
-            <div class="ri-pos" style="color:${cp}">${i+1}</div>
+        ${ents.map((e, i) => {
+          const pct = (e[2] / mx * 100).toFixed(1);
+          const m   = e[2] >= LIMIAR_MITOU;
+          const cp  = i === 0 ? 'var(--dou3)' : i === 1 ? '#B8CCCC' : i === 2 ? '#C87848' : 'var(--t3)';
+          return `<div class="ritem${m ? ' mlinha' : ''}">
+            <div class="ri-pos" style="color:${cp}">${i + 1}</div>
             <div class="ri-emo">${EMO[e[1]]}</div>
-            <div class="ri-nm">${e[1]}${m?`<span class="tag-mitou" style="margin-left:10px">Mitou</span>`:''}</div>
+            <div class="ri-nm">${e[1]}${m ? `<span class="tag-mitou" style="margin-left:10px">Mitou</span>` : ''}</div>
             <div class="ri-bar"><div class="ri-barf" style="width:${pct}%;background:${COR[e[1]]}"></div></div>
             <div class="ri-pts" style="color:${COR[e[1]]}">${fmt(e[2])}</div>
-          </div>`;}).join('')}
+          </div>`;
+        }).join('')}
       </div>`;
   }
 
   // ── ANÁLISE ────────────────────────────────────────────────
-  function buildA(){
-    const tM=Object.values(cMVP).reduce((a,b)=>a+b,0);
-    const tI=Object.values(cMit).reduce((a,b)=>a+b,0);
-    const tL=Object.values(cLan).reduce((a,b)=>a+b,0);
+  function buildA() {
+    const tM = Object.values(cMVP).reduce((a, b) => a + b, 0);
+    const tI = Object.values(cMit).reduce((a, b) => a + b, 0);
+    const tL = Object.values(cLan).reduce((a, b) => a + b, 0);
 
-    document.getElementById('el-trio').innerHTML=`
+    document.getElementById('el-trio').innerHTML = `
       <div class="tbox td">
         <div class="tbox-i">⭐</div>
         <div class="tbox-v">${tM}</div>
@@ -959,48 +1163,60 @@ async function iniciar() {
         <div class="tbox-l">Lanternas</div>
       </div>`;
 
-    const ord=[...cl].sort((a,b)=>{
-      if(cMVP[b.t]!==cMVP[a.t])return cMVP[b.t]-cMVP[a.t];
-      if(cMit[b.t]!==cMit[a.t])return cMit[b.t]-cMit[a.t];
-      return b.tot-a.tot;
+    const ord = [...cl].sort((a, b) => {
+      if (cMVP[b.t] !== cMVP[a.t]) return cMVP[b.t] - cMVP[a.t];
+      if (cMit[b.t] !== cMit[a.t]) return cMit[b.t] - cMit[a.t];
+      return b.tot - a.tot;
     });
 
-    const ch=(n,c)=>n>0?`<div class="chip ${c}">${n}</div>`:`<div class="chip c0">—</div>`;
+    const chip = (n, c) => n > 0
+      ? `<div class="chip ${c}">${n}</div>`
+      : `<div class="chip c0">—</div>`;
 
-    document.getElementById('el-tab').innerHTML=`
+    document.getElementById('el-tab').innerHTML = `
       <div class="tab-leg">
         <div class="tab-leg-row">⭐ <strong>MVP</strong> — melhor pontuação da rodada</div>
-        <div class="tab-leg-row">🔥 <strong>Mitou</strong> — pontuou acima de 80 pontos</div>
+        <div class="tab-leg-row">🔥 <strong>Mitou</strong> — pontuou acima de ${LIMIAR_MITOU} pontos</div>
         <div class="tab-leg-row">🔦 <strong>Lanterna</strong> — menor pontuação da rodada</div>
       </div>
       <div class="tab-hd">
         <div>Time</div><div>⭐</div><div>🔥</div><div>🔦</div><div>Pontos</div>
       </div>
-      ${ord.map(it=>`
+      ${ord.map(it => `
         <div class="tab-ln">
           <div class="tl-time">
             <div class="tl-emo">${EMO[it.t]}</div>
             <div class="tl-nm">${it.t}</div>
           </div>
-          <div class="tl-cel">${ch(cMVP[it.t],'cd')}</div>
-          <div class="tl-cel">${ch(cMit[it.t],'cv')}</div>
-          <div class="tl-cel">${ch(cLan[it.t],'cc')}</div>
+          <div class="tl-cel">${chip(cMVP[it.t], 'cd')}</div>
+          <div class="tl-cel">${chip(cMit[it.t], 'cv')}</div>
+          <div class="tl-cel">${chip(cLan[it.t], 'cc')}</div>
           <div class="tl-pts" style="color:${COR[it.t]}">${fmt(it.tot)}</div>
         </div>`).join('')}`;
   }
 
-  // ── NAV ────────────────────────────────────────────────────
-  window.ir = function(id,btn){
-    document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
-    document.querySelectorAll('.ntab').forEach(b=>b.classList.remove('on'));
-    document.getElementById('pg-'+id).classList.add('on');
+  // ── NAV — delegação de eventos ──────────────────────────────
+  document.getElementById('nav-g').addEventListener('click', e => {
+    const btn = e.target.closest('.ntab');
+    if (!btn) return;
+    const pageId = btn.dataset.page;
+    document.querySelectorAll('.pg').forEach(p => p.classList.remove('on'));
+    document.querySelectorAll('.ntab').forEach(b => b.classList.remove('on'));
+    document.getElementById('pg-' + pageId).classList.add('on');
     btn.classList.add('on');
-  }
+  });
 
-  buildI(); buildR(); buildA();
-}
+  // ── MONTAR TUDO ────────────────────────────────────────────
+  buildI();
+  buildR();
+  buildA();
 
-iniciar();
+  // Ocultar loading
+  const loadEl = document.getElementById('loading');
+  loadEl.classList.add('out');
+  setTimeout(() => loadEl.remove(), 500);
+
+})();
 </script>
 </body>
 </html>

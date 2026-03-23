@@ -940,8 +940,8 @@ body::before {
 
   // ── INÍCIO ─────────────────────────────────────────────────
   function buildI() {
-    // MVP
-    const top  = tOrd[0];
+    // MVP da última rodada
+    const top  = D.filter(d => d[0] === ultimaRod).sort((a, b) => b[2] - a[2])[0];
     const elMvp = document.getElementById('el-mvp');
     elMvp.innerHTML += `
       <div class="mvp-badge" style="position:relative;z-index:1">⭐ MVP da Liga</div>

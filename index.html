@@ -943,9 +943,6 @@ body::before {
     // MVP
     const top  = tOrd[0];
     const elMvp = document.getElementById('el-mvp');
-    criarEstrelas(elMvp);
-    const ptsEl = document.createElement('span');
-    ptsEl.textContent = '0.00';
     elMvp.innerHTML += `
       <div class="mvp-badge" style="position:relative;z-index:1">⭐ MVP da Liga</div>
       <div class="mvp-corpo" style="position:relative;z-index:1">
@@ -956,6 +953,7 @@ body::before {
           <div class="mvp-sub">pontos <span class="mvp-rod">Rodada ${top[0]}</span></div>
         </div>
       </div>`;
+    criarEstrelas(elMvp);
     countUp(document.getElementById('mvp-pts-val'), top[2], 2, 1600);
 
     // Lanterna

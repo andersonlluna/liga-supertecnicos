@@ -2,1202 +2,1685 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Liga Supertecnicos 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0A0908">
+<title>SUPERTECNICOS — Matchday No.12</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,900&family=JetBrains+Mono:wght@400;500;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
 <style>
-/* ══════════════════════════════════════════════════════
-   PALETA — ESPAÇO PROFUNDO + ÂMBAR VIVO + ELÉTRICO
-══════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════════
+   SUPERTECNICOS · Matchday Edition
+   Editorial sports-magazine aesthetic
+   ═══════════════════════════════════════════════════════════════ */
+
 :root {
-  /* Fundos */
-  --bg:   #060B17;
-  --bg2:  #0B1425;
-  --bg3:  #111E33;
-  --bg4:  #1A2C48;
+  /* Paper & ink */
+  --ink:        #0A0908;     /* absolute black-warm */
+  --paper:      #13110F;     /* warm near-black page */
+  --paper-2:    #1C1A16;     /* raised surface */
+  --paper-3:    #26221C;     /* hover surface */
+  --rule:       rgba(245,237,220,0.08);
+  --rule-2:     rgba(245,237,220,0.16);
 
-  /* Âmbar / Ouro vivo */
-  --am:   #D97706;
-  --am2:  #F59E0B;
-  --am3:  #FBBF24;
-  --am4:  #FDE68A;
-  --am-g: linear-gradient(135deg,#D97706 0%,#FBBF24 45%,#FDE68A 70%,#FBBF24 100%);
-  --am-gs:linear-gradient(180deg,#FDE68A,#FBBF24,#D97706);
+  /* Ink & type */
+  --cream:      #F5EDDC;     /* warm off-white headline */
+  --cream-2:    #D9D0BE;     /* body */
+  --stone:      #8A8070;     /* muted */
+  --stone-2:    #544C41;     /* dim */
 
-  /* Elétrico / Azul */
-  --el:   #1D4ED8;
-  --el2:  #3B82F6;
-  --el3:  #60A5FA;
-  --el4:  #BAE6FD;
+  /* Accents — restrained editorial palette */
+  --gold:       #E8B041;     /* MVP / highlight */
+  --gold-2:     #F7D380;     /* gold light */
+  --gold-deep:  #8A5A15;     /* gold shadow */
+  --blood:      #B4321A;     /* lanterna / negative */
+  --blood-2:    #E85C3C;
+  --field:      #4A8C3F;     /* positive / vitória */
+  --field-2:    #86C46E;
+  --ink-blue:   #2B4C7E;     /* subtle cold accent */
 
-  /* Crimson */
-  --cr:   #9F1239;
-  --cr2:  #BE123C;
-  --cr3:  #E11D48;
-  --cr4:  #FB7185;
+  /* Motion */
+  --ease:       cubic-bezier(.2,.7,.2,1);
+  --ease-out:   cubic-bezier(.16,1,.3,1);
 
-  /* Verde esmeralda */
-  --gn2:  #059669;
-  --gn3:  #10B981;
-  --gn4:  #6EE7B7;
-
-  /* Texto */
-  --t1: #F8FAFC;
-  --t2: #CBD5E1;
-  --t3: #64748B;
-
-  /* Utilitários */
-  --glass: rgba(11,20,37,0.80);
-  --bord:  rgba(251,191,36,0.18);
-  --bord2: rgba(255,255,255,0.07);
+  /* Layout */
+  --page-max:   540px;
+  --px:         20px;
+  --r-lg:       22px;
+  --r-md:       14px;
+  --r-sm:       8px;
 }
 
-*,*::before,*::after { margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent }
-html { scroll-behavior:smooth }
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html { scroll-behavior:smooth; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
 
 body {
-  background: var(--bg);
-  color: var(--t1);
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
+  background: var(--ink);
+  color: var(--cream);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
   min-height: 100vh;
-  padding-bottom: 110px;
+  padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px));
   overflow-x: hidden;
-  background-image:
-    radial-gradient(ellipse 80% 50% at 0% 0%,   rgba(245,158,11,0.10) 0%,transparent 60%),
-    radial-gradient(ellipse 60% 40% at 100% 100%,rgba(159,18,57,0.15) 0%,transparent 60%),
-    radial-gradient(ellipse 50% 60% at 50% 0%,   rgba(29,78,216,0.08) 0%,transparent 55%);
+  font-feature-settings: "ss01", "cv11";
 }
 
-/* Grain de luxo */
+/* Grain texture — subtle, editorial */
 body::before {
-  content:'';pointer-events:none;position:fixed;inset:0;z-index:0;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-  opacity:.6;mix-blend-mode:overlay;
+  content:''; position:fixed; inset:0; z-index:1; pointer-events:none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.95 0 0 0 0 0.92 0 0 0 0 0.82 0 0 0 0.055 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23g)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
 }
 
-/* ─── ANIMATIONS ─────────────────────────────────────── */
-@keyframes float {
-  0%,100% { transform:translateY(0) rotate(-2deg); }
-  50%      { transform:translateY(-10px) rotate(2deg); }
-}
-@keyframes star-twinkle {
-  0%,100% { opacity:.15;transform:scale(.8); }
-  50%      { opacity:.95;transform:scale(1.25); }
-}
-@keyframes shimmer-x {
-  0%   { background-position:0% 0%; }
-  100% { background-position:200% 0%; }
-}
-@keyframes pulse-ring {
-  0%,100% { box-shadow:0 0 0 0 rgba(251,191,36,0.4); }
-  50%      { box-shadow:0 0 0 12px rgba(251,191,36,0); }
-}
-@keyframes up {
-  from { opacity:0;transform:translateY(22px); }
-  to   { opacity:1;transform:none; }
-}
-@keyframes bar-grow {
-  from { width:0; }
-}
-@keyframes glow-pulse {
-  0%,100% { text-shadow:0 0 30px rgba(251,191,36,0.35); }
-  50%      { text-shadow:0 0 60px rgba(251,191,36,0.75),0 0 20px #fff2; }
-}
-@keyframes loading-slide {
-  0%   { transform:translateX(-100%); }
-  100% { transform:translateX(400%); }
+/* Paper warmth glow */
+body::after {
+  content:''; position:fixed; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(232,176,65,0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 100% 100%, rgba(180,50,26,0.06) 0%, transparent 55%);
 }
 
-/* ─── LOADING ────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════════
+   TYPOGRAPHY
+   ═══════════════════════════════════════════════════════════════ */
+.serif  { font-family: 'Fraunces', Georgia, serif; font-optical-sizing: auto; }
+.mono   { font-family: 'JetBrains Mono', 'Courier New', monospace; font-feature-settings: "zero", "tnum"; }
+.nums   { font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; }
+
+.rule-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--stone);
+}
+
+.rule-line {
+  display:flex; align-items:center; gap:14px;
+  margin: 34px 0 18px;
+}
+.rule-line .rule-label { flex-shrink:0; color: var(--gold); }
+.rule-line::after {
+  content:''; flex:1; height:1px;
+  background: linear-gradient(90deg, var(--rule-2), transparent);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LOADING
+   ═══════════════════════════════════════════════════════════════ */
 #loading {
-  position:fixed;inset:0;z-index:999;
-  background:var(--bg);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:28px;transition:opacity .6s ease;
+  position:fixed; inset:0; z-index:999;
+  background: var(--ink);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:28px; transition: opacity .5s var(--ease);
 }
-#loading.out { opacity:0;pointer-events:none; }
-.ld-logo {
-  font-family:'Playfair Display',serif;
-  font-size:2rem;font-weight:900;letter-spacing:1px;
-  background:var(--am-gs);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+#loading.out { opacity:0; pointer-events:none; }
+.ld-mark {
+  font-family:'Fraunces', serif;
+  font-weight:900; font-style:italic;
+  font-size: 44px; letter-spacing:-0.02em;
+  color: var(--cream);
 }
-.ld-bar {
-  width:160px;height:3px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;
+.ld-mark em { color: var(--gold); font-style:italic; }
+.ld-sub {
+  font-family:'JetBrains Mono', monospace;
+  font-size:10px; letter-spacing:0.25em; text-transform:uppercase;
+  color: var(--stone);
 }
-.ld-bar-fill {
-  height:100%;width:40%;background:var(--am-g);border-radius:2px;
-  animation:loading-slide 1.2s linear infinite;
+.ld-rule {
+  width: 48px; height: 2px; background: var(--gold);
+  position:relative; overflow:hidden;
 }
-
-/* ─── HEADER ─────────────────────────────────────────── */
-.hdr {
-  position:sticky;top:0;z-index:200;
-  background:rgba(4,8,18,0.96);
-  backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);
-  border-bottom:1px solid rgba(251,191,36,0.14);
+.ld-rule::before {
+  content:''; position:absolute; inset:0;
+  background: var(--cream); transform: translateX(-100%);
+  animation: ld-slide 1.1s linear infinite;
 }
-.hdr::before {
-  content:'';position:absolute;top:0;left:0;right:0;height:3px;
-  background:var(--am-g);background-size:200% 100%;
-  animation:shimmer-x 3s linear infinite;
-}
-.hdr-in {
-  max-width:520px;margin:0 auto;
-  padding:14px 20px 10px;
-}
-.hdr-top {
-  display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;
-}
-.hdr-nome {
-  display:flex;align-items:center;gap:8px;
-}
-.hdr-crown { font-size:1.1rem; }
-.hdr-titulo {
-  font-family:'Playfair Display',serif;
-  font-size:1.3rem;font-weight:900;letter-spacing:.5px;
-}
-.hdr-tag {
-  font-size:0.72rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;
-  color:var(--am2);
-  background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.28);
-  padding:3px 10px;border-radius:20px;
-}
-.hdr-meta {
-  display:flex;align-items:center;justify-content:space-between;
-  font-size:0.82rem;color:var(--t3);margin-bottom:8px;
-}
-.hdr-rod {
-  font-weight:700;
-  color:var(--cr3);font-size:0.88rem;
-}
-/* Barra de progresso da temporada */
-.hdr-prog {
-  height:3px;background:rgba(255,255,255,0.05);border-radius:2px;overflow:hidden;
-}
-.hdr-prog-fill {
-  height:100%;background:var(--am-g);border-radius:2px;
-  transition:width 1.6s cubic-bezier(.4,0,.2,1);width:0%;
+@keyframes ld-slide {
+  to { transform: translateX(100%); }
 }
 
-/* ─── NAV ────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════════
+   MASTHEAD / HEADER
+   ═══════════════════════════════════════════════════════════════ */
+.masthead {
+  position:sticky; top:0; z-index:50;
+  background: rgba(10,9,8,0.86);
+  backdrop-filter: blur(24px) saturate(1.2);
+  -webkit-backdrop-filter: blur(24px) saturate(1.2);
+  border-bottom: 1px solid var(--rule);
+}
+.masthead::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background: linear-gradient(90deg,
+    var(--blood) 0%, var(--gold) 25%, var(--cream) 50%,
+    var(--gold) 75%, var(--blood) 100%);
+  background-size: 300% 100%;
+  animation: shimmer 6s linear infinite;
+  opacity: 0.85;
+}
+@keyframes shimmer {
+  to { background-position: -300% 0; }
+}
+.mast-in {
+  max-width: var(--page-max); margin: 0 auto;
+  padding: 14px var(--px) 10px;
+}
+.mast-top {
+  display:flex; align-items:baseline; justify-content:space-between;
+  gap: 14px; margin-bottom: 10px;
+}
+.mast-name {
+  font-family:'Fraunces', serif;
+  font-weight: 900; font-style: italic;
+  font-size: 22px; letter-spacing: -0.03em;
+  color: var(--cream); line-height: 1;
+}
+.mast-name em { color: var(--gold); font-style: italic; }
+.mast-iss {
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--stone);
+  text-align:right; line-height: 1.3;
+}
+.mast-iss b { color: var(--cream); font-weight: 700; }
+
+.mast-bar {
+  height: 2px; background: var(--rule);
+  position: relative; overflow: hidden; border-radius: 2px;
+}
+.mast-bar-fill {
+  position: absolute; inset: 0 auto 0 0;
+  background: linear-gradient(90deg, var(--gold-deep), var(--gold), var(--gold-2));
+  width: 0%;
+  transition: width 1.8s var(--ease-out);
+  box-shadow: 0 0 12px rgba(232,176,65,0.5);
+}
+.mast-meta {
+  display:flex; justify-content:space-between; align-items:center;
+  margin-top: 6px;
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.1em;
+  color: var(--stone); text-transform: uppercase;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   NAV (bottom tabs — newspaper sections)
+   ═══════════════════════════════════════════════════════════════ */
 .nav {
-  position:fixed;bottom:0;left:0;right:0;z-index:200;
-  background:rgba(4,8,18,0.97);
-  backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);
-  border-top:1px solid rgba(251,191,36,0.12);
-  padding-bottom:env(safe-area-inset-bottom,0px);
+  position:fixed; bottom:0; left:0; right:0; z-index:60;
+  background: rgba(10,9,8,0.94);
+  backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
+  border-top: 1px solid var(--rule-2);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 .nav::before {
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:var(--am-g);opacity:.55;
+  content:''; position:absolute; top:-1px; left:0; right:0; height:1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.6;
 }
 .nav-g {
-  max-width:520px;margin:0 auto;
-  display:grid;grid-template-columns:repeat(3,1fr);
+  max-width: var(--page-max); margin: 0 auto;
+  display: grid; grid-template-columns: repeat(3,1fr);
 }
 .ntab {
-  background:none;border:none;color:var(--t3);
-  font-family:'Space Grotesk',sans-serif;
-  font-size:0.80rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
-  padding:14px 4px 12px;min-height:68px;cursor:pointer;
-  display:flex;flex-direction:column;align-items:center;gap:5px;
-  transition:color .2s;position:relative;
+  background: none; border: 0; cursor: pointer;
+  padding: 12px 6px 10px; min-height: 68px;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 4px; color: var(--stone);
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  position: relative;
+  transition: color .2s var(--ease);
 }
-.ntab .ni { font-size:1.6rem;line-height:1;transition:transform .25s; }
-/* Linha indicadora */
+.ntab-no {
+  font-family:'Fraunces', serif; font-style: italic; font-weight: 500;
+  font-size: 11px; color: var(--stone-2);
+  letter-spacing: 0;
+}
+.ntab-tt {
+  font-family:'Fraunces', serif; font-weight: 900; font-style: italic;
+  font-size: 16px; letter-spacing: -0.02em;
+  color: currentColor; text-transform: none;
+  transition: transform .25s var(--ease);
+}
 .ntab::after {
-  content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);
-  width:0;height:2px;background:var(--am3);border-radius:2px 2px 0 0;
-  transition:width .25s ease;
+  content:''; position:absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 0; height: 2px;
+  background: var(--gold);
+  transition: width .3s var(--ease);
 }
-.ntab.on { color:var(--am3); }
-.ntab.on::after { width:28px; }
-.ntab.on .ni { transform:translateY(-3px) scale(1.1);filter:drop-shadow(0 0 8px rgba(251,191,36,.8)); }
+.ntab.on { color: var(--cream); }
+.ntab.on .ntab-no { color: var(--gold); }
+.ntab.on::after { width: 38px; }
+.ntab.on .ntab-tt { transform: translateY(-1px); }
 
-/* ─── WRAP ───────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════════
+   WRAP & PAGE
+   ═══════════════════════════════════════════════════════════════ */
 .wrap {
-  max-width:520px;margin:0 auto;padding:24px 16px;
-  position:relative;z-index:1;
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 18px var(--px) 32px;
+  position: relative; z-index: 2;
 }
-.pg { display:none; }
-.pg.on { display:block; }
-.pg.on > * { animation:up .45s ease both; }
-.pg.on > *:nth-child(2) { animation-delay:.07s; }
-.pg.on > *:nth-child(3) { animation-delay:.14s; }
-.pg.on > *:nth-child(4) { animation-delay:.21s; }
-.pg.on > *:nth-child(5) { animation-delay:.28s; }
-.pg.on > *:nth-child(6) { animation-delay:.35s; }
-.pg.on > *:nth-child(7) { animation-delay:.42s; }
+.pg { display: none; }
+.pg.on { display: block; }
+.pg.on > * { animation: up .55s var(--ease-out) both; }
+.pg.on > *:nth-child(2) { animation-delay: .06s; }
+.pg.on > *:nth-child(3) { animation-delay: .12s; }
+.pg.on > *:nth-child(4) { animation-delay: .18s; }
+.pg.on > *:nth-child(5) { animation-delay: .24s; }
+.pg.on > *:nth-child(6) { animation-delay: .30s; }
+.pg.on > *:nth-child(7) { animation-delay: .36s; }
+.pg.on > *:nth-child(8) { animation-delay: .42s; }
 
-/* ─── SEÇÃO TÍTULO ───────────────────────────────────── */
-.stit {
-  display:flex;align-items:center;gap:14px;
-  margin:32px 0 16px;
-}
-.stit span {
-  font-size:0.72rem;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;
-  color:var(--am2);white-space:nowrap;
-}
-.stit::after {
-  content:'';flex:1;height:1px;
-  background:linear-gradient(90deg,rgba(251,191,36,0.3),transparent);
+@keyframes up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: none; }
 }
 
-/* ══════════════════════════════════════════════════════
-   CARD MVP — HERÓI
-══════════════════════════════════════════════════════ */
-.mvp-card {
-  border-radius:28px;
-  padding:36px 28px 32px;
-  margin-bottom:14px;
-  position:relative;overflow:hidden;
+/* ═══════════════════════════════════════════════════════════════
+   FEATURE HERO — MVP da Liga (editorial magazine spread)
+   ═══════════════════════════════════════════════════════════════ */
+.feature {
+  position: relative;
+  margin: 8px -4px 4px;
+  padding: 28px 24px 26px;
+  border-radius: var(--r-lg);
+  overflow: hidden;
   background:
-    radial-gradient(ellipse 80% 70% at 110% 120%, rgba(217,119,6,0.22) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 60% at -10% -10%, rgba(159,18,57,0.22) 0%, transparent 55%),
-    linear-gradient(160deg, rgba(27,20,10,0.9) 0%, rgba(6,11,23,0.95) 100%);
-  border:1px solid rgba(251,191,36,0.32);
+    radial-gradient(ellipse 100% 70% at 80% 100%, rgba(232,176,65,0.14) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 60% at -10% -20%, rgba(180,50,26,0.12) 0%, transparent 60%),
+    linear-gradient(165deg, #1F1B14 0%, #100E0B 100%);
+  border: 1px solid rgba(232,176,65,0.22);
   box-shadow:
-    0 0 0 1px rgba(251,191,36,0.08),
-    0 20px 80px rgba(0,0,0,0.7),
-    inset 0 1px 0 rgba(251,191,36,0.15);
+    0 1px 0 rgba(247,211,128,0.1) inset,
+    0 18px 50px rgba(0,0,0,0.55);
 }
-/* Faixa topo animada */
-.mvp-card::after {
-  content:'';position:absolute;top:0;left:0;right:0;height:4px;
-  background:linear-gradient(90deg,var(--cr2),var(--am),var(--am4),var(--am3),var(--am4),var(--am),var(--cr2));
-  background-size:300% 100%;
-  animation:shimmer-x 4s linear infinite;
+.feature::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background: linear-gradient(90deg, var(--blood), var(--gold), var(--cream), var(--gold), var(--blood));
+  background-size: 200% 100%;
+  animation: shimmer 4s linear infinite;
 }
-/* Glow de fundo dourado no canto inferior */
-.mvp-card::before {
-  content:'';position:absolute;bottom:-60px;right:-40px;
-  width:260px;height:260px;border-radius:50%;
-  background:radial-gradient(circle,rgba(245,158,11,0.14) 0%,transparent 70%);
-  pointer-events:none;
-}
-/* Watermark */
-.mvp-wm {
-  position:absolute;right:-28px;bottom:-40px;
-  font-family:'Playfair Display',serif;
-  font-size:11rem;font-weight:900;font-style:italic;
-  color:rgba(251,191,36,0.04);line-height:1;
-  user-select:none;pointer-events:none;
+/* Watermark number */
+.feature-wm {
+  position:absolute; right:-38px; bottom:-76px; z-index:0;
+  font-family:'Fraunces', serif;
+  font-weight:900; font-style:italic;
+  font-size: 15rem; line-height: 1;
+  color: rgba(245,237,220,0.03);
+  pointer-events:none; user-select:none;
 }
 
-.mvp-badge {
-  display:inline-flex;align-items:center;gap:8px;
-  background:rgba(251,191,36,0.1);
-  border:1px solid rgba(251,191,36,0.32);
-  color:var(--am4);
-  font-size:0.75rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;
-  padding:7px 18px;border-radius:40px;margin-bottom:24px;
-  animation:pulse-ring 2.8s ease-in-out infinite;
+.feature-kicker {
+  display:flex; align-items:center; gap: 12px;
+  margin-bottom: 18px;
+  position: relative; z-index: 1;
+}
+.kicker-chip {
+  display:inline-flex; align-items:center; gap: 6px;
+  background: var(--gold);
+  color: #1a1205;
+  font-family:'JetBrains Mono', monospace;
+  font-size: 9px; font-weight: 800;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  padding: 4px 10px 3px;
+  border-radius: 3px;
+}
+.kicker-meta {
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--stone);
 }
 
-.mvp-corpo { display:flex;align-items:center;gap:24px; }
-.mvp-emo {
-  font-size:5.5rem;line-height:1;flex-shrink:0;
-  animation:float 4s ease-in-out infinite;
-  filter:drop-shadow(0 8px 24px rgba(0,0,0,0.6));
+.feature-head {
+  position: relative; z-index: 1;
+  font-family:'Fraunces', serif;
+  font-weight: 900; font-style: italic;
+  font-size: clamp(28px, 8.5vw, 42px);
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  color: var(--cream);
+  margin-bottom: 22px;
 }
-.mvp-nome {
-  font-family:'Playfair Display',serif;
-  font-size:1.55rem;font-weight:900;line-height:1.15;
-  margin-bottom:10px;color:var(--t1);
-}
-.mvp-pts {
-  font-family:'Playfair Display',serif;
-  font-size:4.6rem;font-weight:900;line-height:1;
-  background:var(--am-gs);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  animation:glow-pulse 3s ease-in-out infinite;
-}
-.mvp-sub {
-  font-size:0.85rem;color:var(--t3);margin-top:8px;
-  display:flex;align-items:center;gap:8px;
-}
-.mvp-rod {
-  background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.28);
-  color:var(--am3);font-size:0.80rem;font-weight:700;letter-spacing:.5px;
-  padding:3px 10px;border-radius:6px;
+.feature-head em {
+  color: var(--gold);
+  font-style: italic;
+  display: block;
 }
 
-/* ══════════════════════════════════════════════════════
-   CARD LANTERNA
-══════════════════════════════════════════════════════ */
-.lant-card {
-  border-radius:24px;padding:22px 22px;margin-bottom:14px;
-  display:flex;align-items:center;gap:18px;
-  background:linear-gradient(135deg,rgba(159,18,57,0.25) 0%,rgba(6,11,23,0.85) 100%);
-  border:1px solid rgba(225,29,72,0.35);
-  box-shadow:0 8px 40px rgba(159,18,57,0.2),inset 0 1px 0 rgba(225,29,72,0.15);
-  position:relative;overflow:hidden;
+.feature-score {
+  position: relative; z-index: 1;
+  display: flex; align-items: flex-end;
+  gap: 14px;
+  margin-bottom: 18px;
 }
-.lant-card::before {
-  content:'';position:absolute;top:0;left:0;right:0;height:3px;
-  background:linear-gradient(90deg,var(--cr),var(--cr3),var(--cr4),var(--cr3),var(--cr));
-  background-size:200% 100%;animation:shimmer-x 3s linear infinite;
+.fsc-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  font-size: clamp(62px, 18vw, 88px);
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  color: var(--gold-2);
+  text-shadow: 0 2px 40px rgba(232,176,65,0.25);
 }
-.lant-card::after {
-  content:'';position:absolute;top:-40px;right:-40px;
-  width:150px;height:150px;border-radius:50%;
-  background:radial-gradient(circle,rgba(225,29,72,0.15) 0%,transparent 70%);
-  pointer-events:none;
+.fsc-lbl {
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--stone);
+  padding-bottom: 10px;
+  line-height: 1.3;
 }
-.lant-emo { font-size:3rem;flex-shrink:0;position:relative;z-index:1; }
-.lant-dados { flex:1;position:relative;z-index:1; }
-.lant-etiq {
-  font-size:0.72rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;
-  color:var(--cr3);margin-bottom:4px;
-}
-.lant-nome {
-  font-family:'Playfair Display',serif;
-  font-size:1.35rem;font-weight:900;line-height:1.15;
-}
-.lant-info { font-size:0.85rem;color:var(--t3);margin-top:4px; }
-.lant-num {
-  font-family:'Playfair Display',serif;
-  font-size:2.4rem;font-weight:900;
-  color:var(--cr3);text-align:right;flex-shrink:0;line-height:1;
-  position:relative;z-index:1;
-  text-shadow:0 0 24px rgba(225,29,72,0.5);
-}
-.lant-lb { font-size:0.82rem;color:var(--t3);text-align:right;margin-top:2px; }
-
-/* ══════════════════════════════════════════════════════
-   CARD MITOU
-══════════════════════════════════════════════════════ */
-.mitou-card {
-  border-radius:24px;padding:22px 22px;margin-bottom:14px;
-  background:rgba(245,158,11,0.07);
-  border:1px solid rgba(251,191,36,0.22);
-  box-shadow:0 4px 24px rgba(0,0,0,0.3);
-}
-.mitou-topo {
-  display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;
-}
-.mitou-tit {
-  font-family:'Playfair Display',serif;
-  font-size:1.1rem;font-weight:900;color:var(--am3);
-  display:flex;align-items:center;gap:8px;
-}
-.mitou-cnt {
-  background:var(--am2);color:#1a0f00;
-  font-size:0.82rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;
-  padding:6px 14px;border-radius:20px;
-}
-.mit-row {
-  display:flex;align-items:center;gap:14px;
-  padding:14px 0;border-bottom:1px solid rgba(251,191,36,0.10);
-}
-.mit-row:last-child { border-bottom:none;padding-bottom:0; }
-.mit-emo { font-size:2.2rem;flex-shrink:0; }
-.mit-info { flex:1; }
-.mit-nome { font-size:1rem;font-weight:700;color:var(--t1); }
-.mit-rod  { font-size:0.82rem;color:var(--t3);margin-top:2px; }
-.mit-pts  {
-  font-family:'Playfair Display',serif;
-  font-size:1.65rem;font-weight:900;color:var(--am3);white-space:nowrap;
-}
-.tag-mitou {
-  display:inline-block;
-  background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.32);
-  color:var(--am3);font-size:0.75rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;
-  padding:2px 8px;border-radius:5px;margin-left:8px;vertical-align:middle;
+.fsc-lbl b {
+  color: var(--cream); font-weight: 700; display:block;
+  font-size: 11px;
 }
 
-/* ══════════════════════════════════════════════════════
-   PÓDIO
-══════════════════════════════════════════════════════ */
-.podio {
-  display:grid;grid-template-columns:1fr 1.18fr 1fr;
-  gap:8px;align-items:flex-end;margin-bottom:10px;
+.feature-foot {
+  position: relative; z-index: 1;
+  padding-top: 18px;
+  border-top: 1px dashed var(--rule-2);
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 14px;
+  font-family:'JetBrains Mono', monospace;
+  font-size: 11px; color: var(--stone);
 }
-.pod {
-  border-radius:22px;padding:18px 10px 16px;
-  text-align:center;
-  background:var(--glass);backdrop-filter:blur(16px);
-  border:1px solid var(--bord2);
-  transition:transform .2s;position:relative;overflow:hidden;
-}
-.pod::before {
-  content:'';position:absolute;top:0;left:0;right:0;height:3px;
-}
-.pod.ou {
-  border-color:rgba(251,191,36,0.40);
-  background:rgba(251,191,36,0.10);
-  min-height:215px;
-  box-shadow:0 0 40px rgba(251,191,36,0.12),0 12px 50px rgba(0,0,0,0.5);
-}
-.pod.ou::before { background:var(--am-g);background-size:200% 100%;animation:shimmer-x 3s linear infinite; }
-.pod.pr {
-  border-color:rgba(186,230,253,0.18);
-  min-height:186px;
-}
-.pod.pr::before { background:linear-gradient(90deg,#4A7A8A,#BAE6FD,#4A7A8A); }
-.pod.br {
-  border-color:rgba(217,119,6,0.25);
-  min-height:162px;
-}
-.pod.br::before { background:linear-gradient(90deg,#8A5020,#D97706,#F0C060,#D97706,#8A5020); }
+.feature-foot b { color: var(--cream); font-weight: 700; }
 
-/* Glow de baixo no 1º lugar */
-.pod.ou::after {
-  content:'';position:absolute;bottom:-40px;left:50%;transform:translateX(-50%);
-  width:120px;height:80px;border-radius:50%;
-  background:radial-gradient(circle,rgba(251,191,36,0.28) 0%,transparent 70%);
-  pointer-events:none;
+/* ═══════════════════════════════════════════════════════════════
+   DUAL-TAKE — Lanterna & Mitou overview (editorial columns)
+   ═══════════════════════════════════════════════════════════════ */
+.dual {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 6px;
 }
+.col-card {
+  padding: 18px 16px 16px;
+  border-radius: var(--r-md);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  position: relative;
+  overflow: hidden;
+  min-height: 168px;
+  display: flex; flex-direction: column;
+}
+.col-card.blood { border-color: rgba(180,50,26,0.28); background: linear-gradient(165deg, rgba(180,50,26,0.08), var(--paper)); }
+.col-card.fire  { border-color: rgba(232,176,65,0.22); background: linear-gradient(165deg, rgba(232,176,65,0.07), var(--paper)); }
+.col-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+}
+.col-card.blood::before { background: var(--blood); }
+.col-card.fire::before  { background: var(--gold); }
 
-.pod-me  { font-size:1.9rem;margin-bottom:5px; }
-.pod-emo { font-size:1.55rem;margin-bottom:8px; }
-.pod-nom { font-size:0.88rem;font-weight:700;color:var(--t1);line-height:1.3;margin-bottom:10px; }
-.pod-tot {
-  font-family:'Playfair Display',serif;
-  font-size:1.5rem;font-weight:900;
+.col-kick {
+  font-family:'JetBrains Mono', monospace;
+  font-size: 9px; font-weight: 800;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  margin-bottom: 12px;
 }
-.ou .pod-tot {
-  background:var(--am-gs);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
-.pr .pod-tot { color:#BAE6FD; }
-.br .pod-tot { color:#FBCB80; }
-.pod-med { font-size:0.82rem;color:var(--t3);margin-top:4px; }
+.col-card.blood .col-kick { color: var(--blood-2); }
+.col-card.fire  .col-kick { color: var(--gold); }
 
-/* ══════════════════════════════════════════════════════
-   RANKING
-══════════════════════════════════════════════════════ */
-.rklist { display:flex;flex-direction:column;gap:8px; }
-
-.rk {
-  border-radius:20px;padding:16px 18px;
-  display:flex;align-items:center;gap:14px;
-  background:var(--glass);border:1px solid var(--bord2);
-  backdrop-filter:blur(14px);
-  position:relative;overflow:hidden;
-  transition:transform .18s,box-shadow .18s;
+.col-head {
+  font-family:'Fraunces', serif;
+  font-weight: 900; font-style: italic;
+  font-size: 18px; line-height: 1.05; letter-spacing: -0.02em;
+  color: var(--cream); margin-bottom: 14px;
 }
-.rk:hover { transform:translateY(-2px);box-shadow:0 10px 40px rgba(0,0,0,0.45); }
-.rk:active { transform:scale(0.985); }
-
-/* Fill translúcido de cor do time */
-.rk-fill {
-  position:absolute;top:0;left:0;bottom:0;
-  border-radius:20px;opacity:0.08;
-  transition:width 1.4s cubic-bezier(.4,0,.2,1);
-  width:0%;
+.col-big {
+  font-family:'JetBrains Mono', monospace;
+  font-weight: 800; font-size: 34px; line-height: 1;
+  margin-top: auto;
+  letter-spacing: -0.02em;
 }
-/* Acento lateral colorido */
-.rk-accent {
-  position:absolute;left:0;top:8px;bottom:8px;
-  width:3px;border-radius:0 2px 2px 0;
+.col-card.blood .col-big { color: var(--blood-2); }
+.col-card.fire  .col-big { color: var(--gold-2); }
+.col-sub {
+  margin-top: 6px;
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.08em;
+  color: var(--stone); text-transform: uppercase;
 }
 
-.rk.p1 { border-color:rgba(251,191,36,0.32); }
-.rk.p2 { border-color:rgba(186,230,253,0.18); }
-.rk.p3 { border-color:rgba(217,119,6,0.25); }
-.rk.pl { border-color:rgba(225,29,72,0.32); }
+/* ═══════════════════════════════════════════════════════════════
+   STANDINGS (ranking table — newspaper agate style)
+   ═══════════════════════════════════════════════════════════════ */
+.standings {
+  border-top: 2px solid var(--cream);
+  border-bottom: 1px solid var(--rule-2);
+  margin-bottom: 4px;
+}
+.st-head {
+  display: grid;
+  grid-template-columns: 22px 24px 1fr 44px 70px;
+  gap: 10px;
+  padding: 8px 4px;
+  border-bottom: 1px solid var(--rule-2);
+  font-family:'JetBrains Mono', monospace;
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--stone);
+}
+.st-head div:last-child { text-align: right; }
 
-.rk-n {
-  font-family:'Playfair Display',serif;
-  font-size:1.55rem;font-weight:900;
-  width:36px;text-align:center;flex-shrink:0;color:var(--t3);
+.st-row {
+  display: grid;
+  grid-template-columns: 22px 24px 1fr 44px 70px;
+  gap: 10px;
+  padding: 14px 4px;
+  align-items: center;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+  cursor: pointer;
+  transition: background .2s var(--ease);
 }
-.p1 .rk-n { background:var(--am-gs);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
-.p2 .rk-n { color:#BAE6FD; }
-.p3 .rk-n { color:#FBCB80; }
-.pl .rk-n { color:var(--cr3); }
+.st-row:last-child { border-bottom: 0; }
+.st-row:hover { background: rgba(245,237,220,0.02); }
+.st-row:active { background: rgba(245,237,220,0.04); }
 
-.rk-emo { font-size:1.8rem;flex-shrink:0; }
-.rk-bd  { flex:1;min-width:0; }
-.rk-nm  {
-  font-size:1rem;font-weight:700;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-}
-.rk-mt  {
-  font-size:0.80rem;color:var(--t3);margin-top:3px;
-  display:flex;align-items:center;gap:6px;flex-wrap:wrap;
-}
-.tmit {
-  background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.28);
-  color:var(--am3);font-size:0.75rem;font-weight:700;
-  padding:1px 7px;border-radius:5px;
-}
-.rk-rt { text-align:right;flex-shrink:0; }
-.rk-pts {
-  font-family:'Playfair Display',serif;
-  font-size:1.55rem;font-weight:900;line-height:1;
-}
-.rk-lb { font-size:0.80rem;color:var(--t3);margin-top:2px; }
-/* Barra de baixo */
-.rk-bar { position:absolute;bottom:0;left:0;height:2px;width:100%;background:rgba(255,255,255,0.04); }
-.rk-barf {
-  height:100%;border-radius:0 2px 2px 0;
-  animation:bar-grow .8s ease both;
-  box-shadow:0 0 6px currentColor;
+/* Left fill — subtle team color flag */
+.st-flag {
+  position: absolute; left: -20px; top: 10px; bottom: 10px;
+  width: 3px; border-radius: 0 2px 2px 0;
+  opacity: 0.6;
 }
 
-/* ══════════════════════════════════════════════════════
-   RODADAS
-══════════════════════════════════════════════════════ */
-.pills-wrap {
-  position:relative;margin-bottom:20px;
+.st-pos {
+  font-family:'Fraunces', serif;
+  font-weight: 900; font-size: 20px;
+  line-height: 1; color: var(--cream);
+  font-variant-numeric: tabular-nums;
 }
-.pills-wrap::before,.pills-wrap::after {
-  content:'';position:absolute;top:0;bottom:6px;width:28px;z-index:2;pointer-events:none;
+.st-row.p1 .st-pos { color: var(--gold); }
+.st-row.p2 .st-pos { color: var(--cream); }
+.st-row.p3 .st-pos { color: var(--gold-deep); }
+.st-row.pL .st-pos { color: var(--blood-2); }
+
+/* Delta arrow (↑↓—) */
+.st-delta {
+  font-family:'JetBrains Mono', monospace;
+  font-size: 11px; font-weight: 700;
+  line-height: 1; text-align: center;
+  color: var(--stone);
 }
-.pills-wrap::before { left:0;background:linear-gradient(90deg,var(--bg) 30%,transparent); }
-.pills-wrap::after  { right:0;background:linear-gradient(-90deg,var(--bg) 30%,transparent); }
+.st-delta.up   { color: var(--field-2); }
+.st-delta.down { color: var(--blood-2); }
+
+.st-team {
+  min-width: 0;
+}
+.st-name {
+  font-family:'Fraunces', serif;
+  font-weight: 700; font-size: 16px;
+  line-height: 1.15; letter-spacing: -0.015em;
+  color: var(--cream);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.st-meta {
+  margin-top: 4px;
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.04em;
+  color: var(--stone);
+  display: flex; align-items: center; gap: 8px;
+}
+.st-badge {
+  display:inline-flex; align-items:center; gap: 3px;
+  padding: 1px 5px 0;
+  border-radius: 3px;
+  font-family:'JetBrains Mono', monospace;
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.06em;
+  background: rgba(232,176,65,0.12);
+  color: var(--gold-2);
+  border: 1px solid rgba(232,176,65,0.25);
+}
+
+.st-spark {
+  width: 100%; height: 22px;
+}
+
+.st-pts {
+  text-align: right;
+  font-family:'JetBrains Mono', monospace;
+  font-weight: 800; font-size: 18px;
+  line-height: 1; letter-spacing: -0.02em;
+  color: var(--cream);
+  font-variant-numeric: tabular-nums;
+}
+.st-pts small {
+  display: block;
+  font-weight: 500; font-size: 9px; margin-top: 3px;
+  letter-spacing: 0.08em; color: var(--stone);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HALL OF FAME — top individual scores in the season
+   ═══════════════════════════════════════════════════════════════ */
+.hof {
+  display: grid; gap: 2px;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 4px 0;
+}
+.hof-row {
+  display: grid;
+  grid-template-columns: 28px 1fr 70px;
+  gap: 12px; align-items: center;
+  padding: 12px 2px;
+  border-bottom: 1px dashed var(--rule);
+}
+.hof-row:last-child { border-bottom: 0; }
+.hof-rank {
+  font-family:'Fraunces', serif;
+  font-weight: 900; font-style: italic;
+  font-size: 22px; line-height: 1;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+.hof-body {
+  min-width: 0;
+}
+.hof-name {
+  font-family:'Fraunces', serif;
+  font-weight: 700; font-size: 15px; line-height: 1.1;
+  color: var(--cream);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.hof-rnd {
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.08em;
+  color: var(--stone); margin-top: 3px;
+}
+.hof-pts {
+  font-family:'JetBrains Mono', monospace;
+  font-weight: 800; font-size: 22px;
+  line-height: 1; letter-spacing: -0.02em;
+  text-align: right;
+  color: var(--gold-2);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   GAMEWEEK PAGE
+   ═══════════════════════════════════════════════════════════════ */
+.pill-wrap {
+  position: relative;
+  margin: 4px -4px 14px;
+}
+.pill-wrap::before, .pill-wrap::after {
+  content:''; position: absolute; top:0; bottom: 0;
+  width: 24px; z-index: 2; pointer-events: none;
+}
+.pill-wrap::before { left:0;  background: linear-gradient(90deg, var(--ink), transparent); }
+.pill-wrap::after  { right:0; background: linear-gradient(-90deg, var(--ink), transparent); }
 
 .pills {
-  display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none;
+  display: flex; gap: 6px;
+  overflow-x: auto;
+  padding: 4px 8px 8px;
+  scrollbar-width: none;
 }
-.pills::-webkit-scrollbar { display:none; }
+.pills::-webkit-scrollbar { display: none; }
 .pill {
-  flex-shrink:0;
-  background:var(--bg3);
-  border:1.5px solid var(--bord2);color:var(--t3);
-  font-family:'Space Grotesk',sans-serif;
-  font-size:0.88rem;font-weight:700;
-  padding:11px 22px;border-radius:40px;
-  cursor:pointer;transition:all .2s;min-height:50px;
+  flex-shrink: 0;
+  background: transparent;
+  border: 1px solid var(--rule-2);
+  color: var(--stone);
+  font-family:'JetBrains Mono', monospace;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 9px 16px;
+  border-radius: 22px;
+  cursor: pointer;
+  transition: all .18s var(--ease);
+  min-height: 40px;
 }
+.pill:hover { color: var(--cream); border-color: var(--rule-2); }
 .pill.on {
-  background:var(--cr2);border-color:var(--cr3);color:#fff;
-  box-shadow:0 4px 20px rgba(190,18,60,0.45);
+  background: var(--cream);
+  color: var(--ink);
+  border-color: var(--cream);
+}
+.pill-n {
+  font-family:'Fraunces', serif;
+  font-weight: 900; font-style: italic;
+  font-size: 15px;
+  margin-right: 4px;
+  letter-spacing: -0.02em;
 }
 
-/* MVP rodada */
-.mvpr {
-  border-radius:24px;padding:28px 24px;margin-bottom:14px;
-  position:relative;overflow:hidden;
-  background:
-    radial-gradient(ellipse 80% 80% at 90% 100%,rgba(245,158,11,0.16) 0%,transparent 60%),
-    linear-gradient(155deg,rgba(11,20,37,0.95) 0%,rgba(6,11,23,0.98) 100%);
-  border:1px solid rgba(251,191,36,0.32);
-  box-shadow:0 12px 50px rgba(0,0,0,0.45),inset 0 1px 0 rgba(251,191,36,0.14);
+/* Gameweek headline */
+.gw-head {
+  margin: 4px 0 14px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--cream);
 }
-.mvpr::after {
-  content:'';position:absolute;top:0;left:0;right:0;height:4px;
-  background:linear-gradient(90deg,var(--am),var(--am4),var(--am));
-  background-size:200% 100%;animation:shimmer-x 3.5s linear infinite;
+.gw-kick {
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
 }
-.mvpr::before {
-  content:'MVP';position:absolute;right:-14px;bottom:-22px;
-  font-family:'Playfair Display',serif;
-  font-size:8rem;font-weight:900;font-style:italic;
-  color:rgba(251,191,36,0.04);line-height:1;user-select:none;pointer-events:none;
+.gw-title {
+  font-family:'Fraunces', serif;
+  font-weight: 900; font-style: italic;
+  font-size: 32px; line-height: 0.98;
+  letter-spacing: -0.035em;
+  color: var(--cream);
 }
-.mvpr-tag {
-  display:inline-flex;align-items:center;gap:8px;
-  background:rgba(251,191,36,0.10);border:1px solid rgba(251,191,36,0.28);
-  color:var(--am4);font-size:0.75rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
-  padding:6px 14px;border-radius:30px;margin-bottom:18px;
-}
-.mvpr-corpo { display:flex;align-items:center;gap:18px; }
-.mvpr-emo  {
-  font-size:3.8rem;line-height:1;flex-shrink:0;
-  animation:float 4s ease-in-out infinite;
-  filter:drop-shadow(0 4px 14px rgba(0,0,0,0.5));
-}
-.mvpr-nome {
-  font-family:'Playfair Display',serif;
-  font-size:1.45rem;font-weight:900;line-height:1.1;margin-bottom:6px;
-}
-.mvpr-pts {
-  font-family:'Playfair Display',serif;
-  font-size:3rem;font-weight:900;line-height:1;
-  background:var(--am-gs);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
-.mvpr-sub { font-size:0.82rem;color:var(--t3);margin-top:5px; }
-
-/* Stats boxes */
-.s2 { display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px; }
-.sbox {
-  border-radius:18px;padding:20px 16px;text-align:center;
-  background:var(--glass);border:1px solid var(--bord2);
-  position:relative;overflow:hidden;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,0.04);
-}
-.sbox::before {
-  content:'';position:absolute;top:0;left:0;right:0;height:3px;
-}
-.sbox-avg::before { background:linear-gradient(90deg,var(--el),var(--el3),var(--el)); }
-.sbox-mit::before { background:linear-gradient(90deg,var(--am),var(--am3),var(--am)); }
-.sbox-lb { font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--t3);margin-bottom:10px; }
-.sbox-v  { font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:900;line-height:1; }
-
-/* Lista rodada */
-.rlist { display:flex;flex-direction:column;gap:8px; }
-.ritem {
-  display:flex;align-items:center;gap:12px;
-  padding:15px 18px;border-radius:18px;
-  background:rgba(11,20,37,0.7);border:1px solid var(--bord2);
-  position:relative;overflow:hidden;
-  transition:transform .12s,box-shadow .12s;
-}
-.ritem:hover { transform:translateY(-1px);box-shadow:0 6px 24px rgba(0,0,0,0.3); }
-.ritem:active { transform:scale(0.985); }
-.ritem.mlinha { border-color:rgba(251,191,36,0.28);background:rgba(251,191,36,0.07); }
-.ri-fill {
-  position:absolute;top:0;left:0;bottom:0;border-radius:18px;opacity:0.06;
-  transition:width 1.2s ease;width:0%;
-}
-.ri-pos  {
-  font-family:'Playfair Display',serif;
-  font-size:1.3rem;font-weight:900;width:28px;text-align:center;flex-shrink:0;color:var(--t3);
-}
-.ri-emo  { font-size:1.45rem;flex-shrink:0; }
-.ri-nm   { flex:1;font-size:0.95rem;font-weight:700; }
-.ri-bar  { flex:0 0 42px;height:5px;background:var(--bg4);border-radius:3px;overflow:hidden; }
-.ri-barf { height:100%;border-radius:3px;animation:bar-grow .8s ease both; }
-.ri-pts  {
-  font-family:'Playfair Display',serif;
-  font-size:1.25rem;font-weight:900;width:55px;text-align:right;flex-shrink:0;
+.gw-title em {
+  color: var(--gold); font-style: italic;
+  font-weight: 900;
 }
 
-/* ══════════════════════════════════════════════════════
-   ANÁLISE
-══════════════════════════════════════════════════════ */
-.trio { display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px; }
-.tbox {
-  border-radius:20px;padding:24px 10px;text-align:center;
-  background:var(--glass);border:1px solid var(--bord2);
-  position:relative;overflow:hidden;transition:transform .2s;
+/* Stat strip */
+.strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin: 0 -4px 18px;
+  border: 1px solid var(--rule-2);
+  border-radius: var(--r-md);
+  background: var(--paper);
+  overflow: hidden;
 }
-.tbox:hover { transform:translateY(-3px); }
-.tbox::before { content:'';position:absolute;top:0;left:0;right:0;height:3px; }
-.tbox.td::before { background:var(--am-g);background-size:200% 100%;animation:shimmer-x 3s linear infinite; }
-.tbox.tv::before { background:linear-gradient(90deg,var(--gn2),var(--gn3),var(--gn4),var(--gn3),var(--gn2)); }
-.tbox.tc::before { background:linear-gradient(90deg,var(--cr),var(--cr3),var(--cr4),var(--cr3),var(--cr)); }
-.tbox.td {
-  border-color:rgba(251,191,36,0.30);
-  background:rgba(245,158,11,0.09);
-  box-shadow:0 8px 32px rgba(245,158,11,0.08);
+.strip-cell {
+  padding: 14px 10px;
+  border-right: 1px solid var(--rule);
+  text-align: center;
+  position: relative;
 }
-.tbox.tc {
-  border-color:rgba(225,29,72,0.30);
-  background:rgba(159,18,57,0.12);
-  box-shadow:0 8px 32px rgba(159,18,57,0.08);
+.strip-cell:last-child { border-right: 0; }
+.strip-lbl {
+  font-family:'JetBrains Mono', monospace;
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--stone);
+  margin-bottom: 6px;
 }
-.tbox.tv {
-  border-color:rgba(16,185,129,0.28);
-  background:rgba(5,150,105,0.08);
+.strip-val {
+  font-family:'JetBrains Mono', monospace;
+  font-weight: 800; font-size: 22px; line-height: 1;
+  color: var(--cream); letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
 }
-.tbox-i { font-size:2.2rem;margin-bottom:8px; }
-.tbox-v { font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:900;line-height:1; }
-.td .tbox-v { background:var(--am-gs);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
-.tc .tbox-v { color:var(--cr3); }
-.tv .tbox-v { color:var(--gn3); }
-.tbox-l { font-size:0.75rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--t3);margin-top:6px;line-height:1.5; }
+.strip-cell.gold .strip-val  { color: var(--gold-2); }
+.strip-cell.blood .strip-val { color: var(--blood-2); }
 
-/* Tabela */
-.tabela {
-  border-radius:22px;overflow:hidden;
-  border:1px solid rgba(251,191,36,0.16);
-  background:rgba(11,20,37,0.80);
-  box-shadow:0 8px 40px rgba(0,0,0,0.35);
+/* Gameweek list */
+.gw-list {
+  display: flex; flex-direction: column;
 }
-.tab-leg {
-  padding:16px 20px;border-bottom:1px solid var(--bord2);
-  background:rgba(255,255,255,0.018);
-  display:flex;flex-direction:column;gap:7px;
+.gw-item {
+  display: grid;
+  grid-template-columns: 22px 1fr 52px 80px;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 4px;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+  transition: background .15s var(--ease);
 }
-.tab-leg-row { display:flex;align-items:center;gap:8px;font-size:0.82rem;color:var(--t3); }
-.tab-leg-row strong { color:var(--t1);font-weight:700; }
-.tab-hd {
-  display:grid;grid-template-columns:1fr 50px 50px 50px 70px;
-  padding:12px 20px;
-  background:rgba(251,191,36,0.07);border-bottom:1px solid rgba(251,191,36,0.16);
+.gw-item:last-child { border-bottom: 0; }
+.gw-item.win { background: rgba(232,176,65,0.04); }
+.gw-item.last { background: rgba(180,50,26,0.06); }
+.gw-item:hover { background: rgba(245,237,220,0.03); }
+
+.gwi-pos {
+  font-family:'Fraunces', serif;
+  font-weight: 900; font-style: italic;
+  font-size: 18px; line-height: 1;
+  color: var(--stone);
+  font-variant-numeric: tabular-nums;
 }
-.tab-hd div {
-  font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
-  color:var(--am2);text-align:center;
+.gw-item.win .gwi-pos  { color: var(--gold); }
+.gw-item.last .gwi-pos { color: var(--blood-2); }
+
+.gwi-team {
+  min-width: 0;
 }
-.tab-hd div:first-child { text-align:left;color:var(--t3); }
-.tab-hd div:last-child  { text-align:right;color:var(--t3); }
-.tab-ln {
-  display:grid;grid-template-columns:1fr 50px 50px 50px 70px;
-  padding:16px 20px;border-bottom:1px solid rgba(255,255,255,0.05);
-  align-items:center;transition:background .14s;
+.gwi-name {
+  font-family:'Fraunces', serif;
+  font-weight: 700; font-size: 15px; line-height: 1.15;
+  color: var(--cream);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  display: flex; align-items: center; gap: 8px;
 }
-.tab-ln:last-child { border-bottom:none; }
-.tab-ln:active { background:rgba(255,255,255,0.025); }
-.tl-time { display:flex;align-items:center;gap:10px; }
-.tl-emo  { font-size:1.5rem; }
-.tl-nm   { font-size:1rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
-.tl-cel  { display:flex;align-items:center;justify-content:center; }
-.chip {
-  display:inline-flex;align-items:center;justify-content:center;
-  min-width:38px;height:38px;border-radius:9px;
-  font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:900;
+.gwi-delta {
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--stone);
+  margin-top: 3px;
 }
-.cd { background:rgba(251,191,36,0.13);border:1px solid rgba(251,191,36,0.32);color:var(--am3); }
-.cv { background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.28);color:var(--gn3); }
-.cc { background:rgba(159,18,57,0.18);border:1px solid rgba(225,29,72,0.35);color:var(--cr3); }
-.c0 { color:var(--t3);opacity:.35;font-size:0.85rem; }
-.tl-pts {
-  font-family:'Playfair Display',serif;
-  font-size:1.4rem;font-weight:900;text-align:right;
+.gwi-delta.pos { color: var(--field-2); }
+.gwi-delta.neg { color: var(--blood-2); }
+
+.gwi-bar {
+  width: 100%; height: 4px;
+  background: var(--paper-3);
+  border-radius: 2px; overflow: hidden;
+}
+.gwi-bar-fill {
+  height: 100%; border-radius: 2px;
+  width: 0%;
+  transition: width 1.2s var(--ease-out);
+  background: var(--cream);
+}
+.gw-item.win  .gwi-bar-fill { background: var(--gold); box-shadow: 0 0 8px rgba(232,176,65,0.5); }
+.gw-item.last .gwi-bar-fill { background: var(--blood); }
+
+.gwi-pts {
+  text-align: right;
+  font-family:'JetBrains Mono', monospace;
+  font-weight: 800; font-size: 18px;
+  line-height: 1; letter-spacing: -0.02em;
+  color: var(--cream);
+  font-variant-numeric: tabular-nums;
+}
+
+.mini-flag {
+  display: inline-block;
+  font-family:'JetBrains Mono', monospace;
+  font-size: 8px; font-weight: 800;
+  letter-spacing: 0.1em;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: rgba(232,176,65,0.18);
+  color: var(--gold-2);
+  border: 1px solid rgba(232,176,65,0.3);
+  text-transform: uppercase;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ANALYSIS PAGE
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Trophy triptych */
+.triptych {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.trop {
+  padding: 20px 10px 18px;
+  border: 1px solid var(--rule-2);
+  border-radius: var(--r-md);
+  text-align: center;
+  background: var(--paper);
+  position: relative;
+  overflow: hidden;
+}
+.trop::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+}
+.trop.g::before { background: var(--gold); }
+.trop.f::before { background: var(--field); }
+.trop.b::before { background: var(--blood); }
+
+.trop-lbl {
+  font-family:'JetBrains Mono', monospace;
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--stone);
+  margin-bottom: 10px;
+}
+.trop-big {
+  font-family:'Fraunces', serif;
+  font-weight: 900; font-style: italic;
+  font-size: 42px; line-height: 0.9;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+}
+.trop.g .trop-big { color: var(--gold-2); }
+.trop.f .trop-big { color: var(--field-2); }
+.trop.b .trop-big { color: var(--blood-2); }
+.trop-sub {
+  margin-top: 8px;
+  font-family:'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.08em;
+  color: var(--stone); text-transform: uppercase;
+}
+
+/* Line chart card */
+.chart-card {
+  padding: 18px 14px 6px;
+  border-radius: var(--r-md);
+  background: var(--paper);
+  border: 1px solid var(--rule-2);
+  overflow: hidden;
+}
+.chart-kick {
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.chart-title {
+  font-family:'Fraunces', serif;
+  font-weight: 900; font-style: italic;
+  font-size: 22px; line-height: 1;
+  letter-spacing: -0.025em;
+  color: var(--cream);
+  margin-bottom: 14px;
+}
+.chart-title em { color: var(--gold); font-style: italic; }
+.chart-wrap {
+  position: relative;
+  margin: 0 -10px;
+}
+.chart-svg {
+  width: 100%; height: auto; display: block;
+}
+.chart-legend {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px 10px;
+  padding: 12px 4px 2px;
+  margin-top: 6px;
+  border-top: 1px solid var(--rule);
+}
+.leg-chip {
+  display: flex; align-items: center; gap: 6px;
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 600;
+  color: var(--cream-2);
+  cursor: pointer;
+  user-select: none;
+  padding: 4px 2px;
+  border-radius: 4px;
+  transition: opacity .2s;
+}
+.leg-chip.off { opacity: 0.28; }
+.leg-dot {
+  width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0;
+}
+
+/* Honor roll table */
+.honor {
+  border-top: 2px solid var(--cream);
+  border-bottom: 1px solid var(--rule-2);
+}
+.honor-head {
+  display: grid;
+  grid-template-columns: 1fr 42px 42px 42px 64px;
+  gap: 8px;
+  padding: 10px 4px;
+  border-bottom: 1px solid var(--rule-2);
+  font-family:'JetBrains Mono', monospace;
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--stone);
+}
+.honor-head div { text-align: center; }
+.honor-head div:first-child { text-align: left; }
+.honor-head div:last-child { text-align: right; }
+
+.honor-row {
+  display: grid;
+  grid-template-columns: 1fr 42px 42px 42px 64px;
+  gap: 8px; align-items: center;
+  padding: 14px 4px;
+  border-bottom: 1px solid var(--rule);
+}
+.honor-row:last-child { border-bottom: 0; }
+.honor-name {
+  font-family:'Fraunces', serif;
+  font-weight: 700; font-size: 14px; line-height: 1.15;
+  color: var(--cream);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.honor-cell {
+  text-align: center;
+  font-family:'JetBrains Mono', monospace;
+  font-weight: 800; font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+.hc-g { color: var(--gold-2); }
+.hc-f { color: var(--field-2); }
+.hc-b { color: var(--blood-2); }
+.hc-0 { color: var(--stone-2); font-weight: 400; }
+
+.honor-pts {
+  font-family:'JetBrains Mono', monospace;
+  font-weight: 800; font-size: 15px;
+  line-height: 1; letter-spacing: -0.01em;
+  text-align: right;
+  color: var(--cream);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   END MATTER — colophon
+   ═══════════════════════════════════════════════════════════════ */
+.colophon {
+  margin: 32px 0 8px;
+  padding: 14px 2px 2px;
+  border-top: 1px solid var(--rule);
+  font-family:'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.14em;
+  color: var(--stone-2); text-transform: uppercase;
+  text-align: center;
+  line-height: 1.8;
+}
+.colophon em { color: var(--gold); font-style: normal; }
+
+/* ═══════════════════════════════════════════════════════════════
+   UTILITIES
+   ═══════════════════════════════════════════════════════════════ */
+.pulse {
+  animation: pulse 2.4s var(--ease) infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity: 1; }
+  50%     { opacity: 0.45; }
+}
+
+/* Tiny screens */
+@media (max-width: 360px) {
+  :root { --px: 14px; }
+  .feature { padding: 22px 18px; }
+  .gw-title { font-size: 28px; }
 }
 </style>
 </head>
 <body>
 
-<!-- LOADING -->
+<!-- LOADING ─────────────────────────────────────────────── -->
 <div id="loading">
-  <div class="ld-logo">Supertecnicos</div>
-  <div class="ld-bar"><div class="ld-bar-fill"></div></div>
+  <div class="ld-mark">Super<em>tecnicos</em></div>
+  <div class="ld-rule"></div>
+  <div class="ld-sub">Matchday · Edition 2026</div>
 </div>
 
-<!-- HEADER -->
-<div class="hdr">
-  <div class="hdr-in">
-    <div class="hdr-top">
-      <div class="hdr-nome">
-        <span class="hdr-crown">🏆</span>
-        <span class="hdr-titulo">Supertecnicos</span>
+<!-- MASTHEAD ────────────────────────────────────────────── -->
+<header class="masthead">
+  <div class="mast-in">
+    <div class="mast-top">
+      <div class="mast-name">Super<em>tecnicos</em></div>
+      <div class="mast-iss">
+        <b>Vol. 01</b><br>
+        Matchday <span id="mast-rod">—</span>
       </div>
-      <div class="hdr-tag">Cartola FC · 2026</div>
     </div>
-    <div class="hdr-meta">
-      <span>Temporada em andamento</span>
-      <span class="hdr-rod" id="hdr-rod">—</span>
-    </div>
-    <div class="hdr-prog">
-      <div class="hdr-prog-fill" id="hdr-prog-fill"></div>
+    <div class="mast-bar"><div class="mast-bar-fill" id="mast-bar"></div></div>
+    <div class="mast-meta">
+      <span>Cartola FC · 2026</span>
+      <span id="mast-prog">—</span>
     </div>
   </div>
-</div>
+</header>
 
-<!-- CONTEÚDO -->
-<div class="wrap">
-  <!-- INÍCIO -->
-  <div class="pg on" id="pg-inicio">
-    <div class="mvp-card" id="el-mvp"><div class="mvp-wm">MVP</div></div>
-    <div class="lant-card" id="el-lant"></div>
-    <div class="mitou-card" id="el-mitou"></div>
-    <div class="stit"><span>Os 3 Melhores</span></div>
-    <div class="podio" id="el-podio"></div>
-    <div class="stit"><span>Classificação Completa</span></div>
-    <div class="rklist" id="el-rank"></div>
-  </div>
+<!-- CONTENT ─────────────────────────────────────────────── -->
+<main class="wrap">
 
-  <!-- RODADAS -->
-  <div class="pg" id="pg-rodadas">
-    <div class="pills-wrap">
+  <!-- ── PAGE 1 · MATCHDAY ───────────────────────────────── -->
+  <section class="pg on" id="pg-matchday">
+
+    <!-- Feature hero: MVP da Liga -->
+    <article class="feature" id="feature-mvp">
+      <div class="feature-wm" id="feature-wm">—</div>
+      <div class="feature-kicker">
+        <span class="kicker-chip">★ Player of the Season</span>
+        <span class="kicker-meta" id="kicker-meta">—</span>
+      </div>
+      <h1 class="feature-head" id="feature-head">—</h1>
+      <div class="feature-score">
+        <div class="fsc-num mono nums" id="fsc-num">0.00</div>
+        <div class="fsc-lbl">
+          <b>PONTOS</b>
+          em uma única<br>
+          rodada
+        </div>
+      </div>
+      <div class="feature-foot">
+        <span>A maior pontuação da temporada,<br>registrada na <b id="feature-when">—</b>.</span>
+      </div>
+    </article>
+
+    <!-- Dual take: Lanterna / Mitou -->
+    <div class="dual" style="margin-top:10px;">
+      <div class="col-card blood" id="col-lant">
+        <div class="col-kick">◉ Lanterna</div>
+        <div class="col-head" id="col-lant-name">—</div>
+        <div class="col-big nums" id="col-lant-pts">0</div>
+        <div class="col-sub">pontos · média <span id="col-lant-avg">—</span></div>
+      </div>
+      <div class="col-card fire" id="col-mitou">
+        <div class="col-kick">※ Mitou!</div>
+        <div class="col-head">Acima de 80 pts</div>
+        <div class="col-big nums" id="col-mitou-n">0</div>
+        <div class="col-sub">vezes na temporada</div>
+      </div>
+    </div>
+
+    <!-- Standings -->
+    <div class="rule-line"><span class="rule-label">Classificação Geral</span></div>
+    <div class="standings" id="standings"></div>
+
+    <!-- Hall of Fame -->
+    <div class="rule-line"><span class="rule-label">Hall of Fame · Top 5 Rodadas</span></div>
+    <div class="hof" id="hof"></div>
+
+  </section>
+
+  <!-- ── PAGE 2 · GAMEWEEK ───────────────────────────────── -->
+  <section class="pg" id="pg-gameweek">
+
+    <div class="pill-wrap">
       <div class="pills" id="pills"></div>
     </div>
-    <div id="corpo-rod"></div>
-  </div>
 
-  <!-- ANÁLISE -->
-  <div class="pg" id="pg-analise">
-    <div class="stit" style="margin-top:4px"><span>Conquistas na Temporada</span></div>
-    <div class="trio" id="el-trio"></div>
-    <div class="stit"><span>Placar de Honra</span></div>
-    <div class="tabela" id="el-tab"></div>
-  </div>
-</div>
+    <div id="gw-body"></div>
 
-<!-- NAV -->
-<div class="nav">
-  <div class="nav-g" id="nav-g">
-    <button class="ntab on" data-page="inicio"><span class="ni">🏠</span>Início</button>
-    <button class="ntab" data-page="rodadas"><span class="ni">📅</span>Rodadas</button>
-    <button class="ntab" data-page="analise"><span class="ni">📊</span>Análise</button>
+  </section>
+
+  <!-- ── PAGE 3 · ANALYSIS ───────────────────────────────── -->
+  <section class="pg" id="pg-analysis">
+
+    <div class="rule-line" style="margin-top:8px"><span class="rule-label">Conquistas na Temporada</span></div>
+    <div class="triptych" id="triptych"></div>
+
+    <div class="rule-line"><span class="rule-label">Evolução das Posições</span></div>
+    <div class="chart-card">
+      <div class="chart-kick">Position Tracker</div>
+      <div class="chart-title">Quem <em>subiu</em>, quem caiu.</div>
+      <div class="chart-wrap">
+        <svg class="chart-svg" id="chart" viewBox="0 0 500 280" preserveAspectRatio="none"></svg>
+      </div>
+      <div class="chart-legend" id="chart-legend"></div>
+    </div>
+
+    <div class="rule-line"><span class="rule-label">Placar de Honra</span></div>
+    <div class="honor" id="honor"></div>
+
+    <div class="colophon">
+      Produzido com <em>dados oficiais</em> do Cartola FC<br>
+      Liga Supertecnicos · Temporada 2026
+    </div>
+
+  </section>
+
+</main>
+
+<!-- BOTTOM NAV ──────────────────────────────────────────── -->
+<nav class="nav">
+  <div class="nav-g" id="nav">
+    <button class="ntab on" data-p="matchday">
+      <span class="ntab-no">01</span>
+      <span class="ntab-tt">Matchday</span>
+    </button>
+    <button class="ntab" data-p="gameweek">
+      <span class="ntab-no">02</span>
+      <span class="ntab-tt">Gameweek</span>
+    </button>
+    <button class="ntab" data-p="analysis">
+      <span class="ntab-no">03</span>
+      <span class="ntab-tt">Analysis</span>
+    </button>
   </div>
-</div>
+</nav>
 
 <script>
 (async function () {
-  // ── CONSTANTES ─────────────────────────────────────────────
-  const LIMIAR_MITOU = 80;
-  const TOTAL_RODADAS = 38;
+'use strict';
 
-  const EMO = {
-    'Icebergteam':     '🧊',
-    'Sons of Númenor': '🛡️',
-    'Ironverdict':     '🪽',
-    'CEEC':            '⚔️',
-    'Otopatamá':       '⛩️',
-    'Andorinha Jr':    '🐦',
-    'Andorinha':       '🦅',
-    'Varelitas':       '🦊',
-    'Lobonegro':       '🐺',
-  };
+/* ═══════════════════════════════════════════════════════════════
+   DATA LOADER — arquivo fica no repositório, buscado via fetch.
+   Tenta vários nomes prováveis em ordem, retorna o primeiro que
+   existir. Ajustar a lista se o arquivo no repo tiver outro nome.
+   ═══════════════════════════════════════════════════════════════ */
+const DATA_FILES = [
+  'Resultados_do_Campeonato.txt',
+  'Resultados do Campeonato.txt',
+  'resultados.csv',
+  'dados.csv',
+];
 
-  const CORES = [
-    '#FBBF24','#60A5FA','#34D399','#F472B6',
-    '#A78BFA','#FB923C','#38BDF8','#4ADE80','#F87171',
-  ];
-
-  const fmt = v => v.toFixed(2);
-
-  // ── UTILITÁRIOS ─────────────────────────────────────────────
-  // Contador animado
-  function countUp(el, target, decimals, duration = 1400) {
-    const t0 = performance.now();
-    function frame(now) {
-      const p = Math.min((now - t0) / duration, 1);
-      const e = 1 - Math.pow(1 - p, 3); // easeOutCubic
-      el.textContent = (target * e).toFixed(decimals);
-      if (p < 1) requestAnimationFrame(frame);
+async function loadCSV() {
+  const tried = [];
+  for (const name of DATA_FILES) {
+    try {
+      const r = await fetch(encodeURI(name), { cache: 'no-store' });
+      tried.push(`${name} → ${r.status}`);
+      if (r.ok) {
+        const txt = await r.text();
+        if (txt && txt.trim().length > 0) return txt;
+      }
+    } catch (e) {
+      tried.push(`${name} → ${e.message}`);
     }
-    requestAnimationFrame(frame);
   }
+  throw new Error(
+    'Nenhum arquivo de dados encontrado. Tentados:\n' + tried.join('\n') +
+    '\n\nColoque o CSV no mesmo diretório do index.html com um destes nomes: ' +
+    DATA_FILES.join(', ')
+  );
+}
 
-  // Estrelas piscando no fundo
-  function criarEstrelas(container, n = 28) {
-    const wrap = document.createElement('div');
-    wrap.style.cssText = 'position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0';
-    for (let i = 0; i < n; i++) {
-      const s = document.createElement('span');
-      const sz    = (Math.random() * 2.5 + 0.5).toFixed(1);
-      const x     = (Math.random() * 90 + 5).toFixed(1);
-      const y     = (Math.random() * 75 + 10).toFixed(1);
-      const dur   = (Math.random() * 2 + 1.5).toFixed(2);
-      const delay = (Math.random() * 3).toFixed(2);
-      const op    = (Math.random() * 0.5 + 0.15).toFixed(2);
-      s.style.cssText =
-        `position:absolute;left:${x}%;top:${y}%;` +
-        `width:${sz}px;height:${sz}px;border-radius:50%;` +
-        `background:rgba(253,230,138,${op});` +
-        `animation:star-twinkle ${dur}s ${delay}s ease-in-out infinite`;
-      wrap.appendChild(s);
-    }
-    container.appendChild(wrap);
-  }
-
-  // Anima widths com rAF (para fills e barras)
-  function animarWidth(el, pct, delay = 0) {
-    setTimeout(() => {
-      el.style.transition = 'width 1.4s cubic-bezier(.4,0,.2,1)';
-      el.style.width = pct + '%';
-    }, delay);
-  }
-
-  // ── CARREGAR CSV ────────────────────────────────────────────
-  async function carregarDados() {
-    const resp = await fetch('dados.csv');
-    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-    const txt = await resp.text();
-    return txt.trim().split('\n').slice(1).map(l => {
-      const [rodada, time, pontos] = l.split(',');
-      return [parseInt(rodada, 10), time.trim(), parseFloat(pontos)];
-    });
-  }
-
-  // ── INICIALIZAR ─────────────────────────────────────────────
-  let D;
-  try {
-    D = await carregarDados();
-  } catch (err) {
-    document.getElementById('loading').innerHTML = `
-      <div style="text-align:center;padding:40px 24px;color:var(--t3)">
-        <div style="font-size:3.5rem;margin-bottom:16px">⚠️</div>
-        <div style="font-family:'Playfair Display',serif;font-size:1.4rem;
-             color:var(--t1);margin-bottom:8px">Erro ao carregar dados</div>
-        <div style="font-size:0.9rem">${err.message}</div>
-      </div>`;
-    return;
-  }
-
-  const TIMES = [...new Set(D.map(d => d[1]))];
-  const RODS  = [...new Set(D.map(d => d[0]))].sort((a, b) => a - b);
-
-  // Cor por time
-  const COR = {};
-  TIMES.forEach((t, i) => COR[t] = CORES[i % CORES.length]);
-
-  // Pré-computar stats
-  const ST = {};
-  TIMES.forEach(t => {
-    const ptsArr = D.filter(d => d[1] === t).map(d => d[2]);
-    const total  = ptsArr.reduce((a, b) => a + b, 0);
-    ST[t] = { pts: ptsArr, tot: total, med: total / ptsArr.length };
-  });
-
-  const cl   = TIMES.map(t => ({ t, tot: ST[t].tot, med: ST[t].med })).sort((a, b) => b.tot - a.tot);
-  const tOrd = [...D].sort((a, b) => b[2] - a[2]);
-  const mits = D.filter(d => d[2] >= LIMIAR_MITOU).sort((a, b) => b[2] - a[2]);
-
-  const cMVP = {}, cMit = {}, cLan = {};
-  TIMES.forEach(t => { cMVP[t] = 0; cMit[t] = 0; cLan[t] = 0; });
-  RODS.forEach(r => {
-    const rd = D.filter(d => d[0] === r).sort((a, b) => b[2] - a[2]);
-    if (rd.length) { cMVP[rd[0][1]]++; cLan[rd[rd.length - 1][1]]++; }
-    rd.forEach(d => { if (d[2] >= LIMIAR_MITOU) cMit[d[1]]++; });
-  });
-
-  // Header
-  const ultimaRod = RODS[RODS.length - 1];
-  document.getElementById('hdr-rod').textContent = `Rodada ${ultimaRod} de ${TOTAL_RODADAS}`;
-  requestAnimationFrame(() => {
-    document.getElementById('hdr-prog-fill').style.width =
-      ((ultimaRod / TOTAL_RODADAS) * 100).toFixed(1) + '%';
-  });
-
-  // ── INÍCIO ─────────────────────────────────────────────────
-  function buildI() {
-    // MVP
-    const top  = tOrd[0];
-    const elMvp = document.getElementById('el-mvp');
-    elMvp.innerHTML += `
-      <div class="mvp-badge" style="position:relative;z-index:1">⭐ MVP da Liga</div>
-      <div class="mvp-corpo" style="position:relative;z-index:1">
-        <div class="mvp-emo">${EMO[top[1]]}</div>
-        <div class="mvp-dados">
-          <div class="mvp-nome">${top[1]}</div>
-          <div class="mvp-pts" id="mvp-pts-val">0.00</div>
-          <div class="mvp-sub">pontos <span class="mvp-rod">Rodada ${top[0]}</span></div>
-        </div>
-      </div>`;
-    criarEstrelas(elMvp);
-    countUp(document.getElementById('mvp-pts-val'), top[2], 2, 1600);
-
-    // Lanterna
-    const ul = cl[cl.length - 1];
-    document.getElementById('el-lant').innerHTML = `
-      <div class="lant-emo">🔦</div>
-      <div class="lant-dados">
-        <div class="lant-etiq">Lanterna do Grupo</div>
-        <div class="lant-nome">${ul.t}</div>
-        <div class="lant-info">Média <strong>${fmt(ul.med)}</strong> pts/rodada</div>
-      </div>
-      <div>
-        <div class="lant-num" id="lant-num">0.00</div>
-        <div class="lant-lb">no total</div>
-      </div>`;
-    countUp(document.getElementById('lant-num'), ul.tot, 2, 1300);
-
-    // Mitou
-    const n = mits.length;
-    document.getElementById('el-mitou').innerHTML = `
-      <div class="mitou-topo">
-        <div class="mitou-tit">🔥 Mitou! — acima de ${LIMIAR_MITOU}</div>
-        <div class="mitou-cnt">${n} ${n === 1 ? 'vez' : 'vezes'}</div>
-      </div>
-      ${n === 0
-        ? '<div style="font-size:0.95rem;color:var(--t3)">Nenhuma mitada ainda.</div>'
-        : mits.map(e => `
-          <div class="mit-row">
-            <div class="mit-emo">${EMO[e[1]]}</div>
-            <div class="mit-info">
-              <div class="mit-nome">${e[1]}</div>
-              <div class="mit-rod">Rodada ${e[0]}</div>
-            </div>
-            <div class="mit-pts">${fmt(e[2])}<span class="tag-mitou">Mitou</span></div>
-          </div>`).join('')}`;
-
-    // Pódio
-    const t3 = cl.slice(0, 3);
-    const medalhas = ['🥇','🥈','🥉'], cls3 = ['ou','pr','br'];
-    document.getElementById('el-podio').innerHTML = [1,0,2].map(i => {
-      const it = t3[i]; if (!it) return '';
-      const o  = i === 0 ? 1 : i === 1 ? 0 : 2;
-      return `<div class="pod ${cls3[i]}" style="order:${o}">
-        <div class="pod-me">${medalhas[i]}</div>
-        <div class="pod-emo">${EMO[it.t]}</div>
-        <div class="pod-nom">${it.t}</div>
-        <div class="pod-tot">${fmt(it.tot)}</div>
-        <div class="pod-med">média ${fmt(it.med)}</div>
-      </div>`;
-    }).join('');
-
-    // Ranking
-    const mx = cl[0].tot;
-    document.getElementById('el-rank').innerHTML = cl.map((it, i) => {
-      const pct = (it.tot / mx * 100).toFixed(1);
-      const kc  = i===0?'p1':i===1?'p2':i===2?'p3':i===cl.length-1?'pl':'';
-      const ic  = i===0?'👑':i===1?'🥈':i===2?'🥉':i===cl.length-1?'🔦':'';
-      const hm  = cMit[it.t] > 0;
-      return `<div class="rk ${kc}">
-        <div class="rk-fill" id="rf-${i}" style="background:${COR[it.t]}"></div>
-        <div class="rk-accent" style="background:${COR[it.t]}"></div>
-        <div class="rk-n">${i + 1}</div>
-        <div class="rk-emo">${EMO[it.t]}</div>
-        <div class="rk-bd">
-          <div class="rk-nm">${it.t} ${ic}</div>
-          <div class="rk-mt">
-            <span>Média ${fmt(it.med)}</span>
-            ${hm ? `<span class="tmit">🔥 ${cMit[it.t]}×</span>` : ''}
-          </div>
-        </div>
-        <div class="rk-rt">
-          <div class="rk-pts" style="color:${COR[it.t]}">${fmt(it.tot)}</div>
-          <div class="rk-lb">pontos</div>
-        </div>
-        <div class="rk-bar">
-          <div class="rk-barf" id="rb-${i}" style="width:0%;background:${COR[it.t]};color:${COR[it.t]}"></div>
-        </div>
-      </div>`;
-    }).join('');
-
-    // Anima fills e barras com stagger
-    cl.forEach((it, i) => {
-      const pct = (it.tot / mx * 100).toFixed(1);
-      animarWidth(document.getElementById(`rf-${i}`), pct, i * 60);
-      animarWidth(document.getElementById(`rb-${i}`), pct, i * 60 + 200);
-    });
-  }
-
-  // ── RODADAS ────────────────────────────────────────────────
-  let rodadaAtual = RODS[RODS.length - 1];
-
-  function buildR() {
-    document.getElementById('pills').innerHTML = RODS.map(r =>
-      `<button class="pill${r === rodadaAtual ? ' on' : ''}" data-rod="${r}">Rodada ${r}</button>`
-    ).join('');
-    scrollPill();
-    renderR();
-  }
-
-  function scrollPill() {
-    const p = document.querySelector('.pill.on');
-    if (p) p.scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
-  }
-
-  function selecionarRodada(r) {
-    rodadaAtual = r;
-    document.querySelectorAll('.pill').forEach(b =>
-      b.classList.toggle('on', parseInt(b.dataset.rod, 10) === r));
-    scrollPill();
-    renderR();
-  }
-
-  document.getElementById('pills').addEventListener('click', e => {
-    const p = e.target.closest('.pill');
-    if (p) selecionarRodada(parseInt(p.dataset.rod, 10));
-  });
-
-  function renderR() {
-    const r    = rodadaAtual;
-    const ents = D.filter(d => d[0] === r).sort((a, b) => b[2] - a[2]);
-    const mvp  = ents[0], mx = mvp[2];
-    const avg  = ents.reduce((a, d) => a + d[2], 0) / ents.length;
-    const nm   = ents.filter(e => e[2] >= LIMIAR_MITOU).length;
-
-    document.getElementById('corpo-rod').innerHTML = `
-      <div class="mvpr">
-        <div class="mvpr-tag">⭐ MVP — Rodada ${r}</div>
-        <div class="mvpr-corpo">
-          <div class="mvpr-emo">${EMO[mvp[1]]}</div>
-          <div class="mvpr-dados">
-            <div class="mvpr-nome">${mvp[1]}</div>
-            <div class="mvpr-pts" id="mvpr-pts">0.00</div>
-            <div class="mvpr-sub">pontos nesta rodada</div>
-          </div>
-        </div>
-      </div>
-      <div class="s2">
-        <div class="sbox sbox-avg">
-          <div class="sbox-lb">📊 Média da Rodada</div>
-          <div class="sbox-v" style="color:var(--el3)" id="sr-avg">0.00</div>
-        </div>
-        <div class="sbox sbox-mit">
-          <div class="sbox-lb">🔥 Mitou!</div>
-          <div class="sbox-v" style="color:var(--am3)">${nm}</div>
-        </div>
-      </div>
-      <div class="stit"><span>Resultado — Rodada ${r}</span></div>
-      <div class="rlist">
-        ${ents.map((e, i) => {
-          const pct = (e[2] / mx * 100).toFixed(1);
-          const m   = e[2] >= LIMIAR_MITOU;
-          const cp  = i===0?'var(--am3)':i===1?'#BAE6FD':i===2?'#FBCB80':'var(--t3)';
-          return `<div class="ritem${m ? ' mlinha' : ''}">
-            <div class="ri-fill" id="rif-${i}" style="background:${COR[e[1]]}"></div>
-            <div class="ri-pos" style="color:${cp}">${i + 1}</div>
-            <div class="ri-emo">${EMO[e[1]]}</div>
-            <div class="ri-nm">${e[1]}${m ? `<span class="tag-mitou">Mitou</span>` : ''}</div>
-            <div class="ri-bar"><div class="ri-barf" id="rib-${i}" style="width:0%;background:${COR[e[1]]}"></div></div>
-            <div class="ri-pts" style="color:${COR[e[1]]}" id="rip-${i}">0.00</div>
-          </div>`;
-        }).join('')}
-      </div>`;
-
-    countUp(document.getElementById('mvpr-pts'), mvp[2], 2, 1200);
-    countUp(document.getElementById('sr-avg'),   avg,    2, 1100);
-    ents.forEach((e, i) => {
-      const pct = (e[2] / mx * 100).toFixed(1);
-      animarWidth(document.getElementById(`rif-${i}`), pct, i * 55);
-      animarWidth(document.getElementById(`rib-${i}`), pct, i * 55 + 150);
-      countUp(document.getElementById(`rip-${i}`), e[2], 2, 900 + i * 40);
-    });
-  }
-
-  // ── ANÁLISE ────────────────────────────────────────────────
-  function buildA() {
-    const tM = Object.values(cMVP).reduce((a, b) => a + b, 0);
-    const tI = Object.values(cMit).reduce((a, b) => a + b, 0);
-    const tL = Object.values(cLan).reduce((a, b) => a + b, 0);
-
-    document.getElementById('el-trio').innerHTML = `
-      <div class="tbox td">
-        <div class="tbox-i">⭐</div>
-        <div class="tbox-v">${tM}</div>
-        <div class="tbox-l">MVPs</div>
-      </div>
-      <div class="tbox tv">
-        <div class="tbox-i">🔥</div>
-        <div class="tbox-v">${tI}</div>
-        <div class="tbox-l">Mitadas</div>
-      </div>
-      <div class="tbox tc">
-        <div class="tbox-i">🔦</div>
-        <div class="tbox-v">${tL}</div>
-        <div class="tbox-l">Lanternas</div>
-      </div>`;
-
-    const ord = [...cl].sort((a, b) => {
-      if (cMVP[b.t] !== cMVP[a.t]) return cMVP[b.t] - cMVP[a.t];
-      if (cMit[b.t] !== cMit[a.t]) return cMit[b.t] - cMit[a.t];
-      return b.tot - a.tot;
-    });
-
-    const chip = (n, c) => n > 0
-      ? `<div class="chip ${c}">${n}</div>`
-      : `<div class="chip c0">—</div>`;
-
-    document.getElementById('el-tab').innerHTML = `
-      <div class="tab-leg">
-        <div class="tab-leg-row">⭐ <strong>MVP</strong> — melhor pontuação da rodada</div>
-        <div class="tab-leg-row">🔥 <strong>Mitou</strong> — acima de ${LIMIAR_MITOU} pontos</div>
-        <div class="tab-leg-row">🔦 <strong>Lanterna</strong> — menor pontuação da rodada</div>
-      </div>
-      <div class="tab-hd">
-        <div>Time</div><div>⭐</div><div>🔥</div><div>🔦</div><div>Pts</div>
-      </div>
-      ${ord.map(it => `
-        <div class="tab-ln">
-          <div class="tl-time">
-            <div class="tl-emo">${EMO[it.t]}</div>
-            <div class="tl-nm">${it.t}</div>
-          </div>
-          <div class="tl-cel">${chip(cMVP[it.t], 'cd')}</div>
-          <div class="tl-cel">${chip(cMit[it.t], 'cv')}</div>
-          <div class="tl-cel">${chip(cLan[it.t], 'cc')}</div>
-          <div class="tl-pts" style="color:${COR[it.t]}">${fmt(it.tot)}</div>
-        </div>`).join('')}`;
-  }
-
-  // ── NAV ─────────────────────────────────────────────────────
-  document.getElementById('nav-g').addEventListener('click', e => {
-    const btn = e.target.closest('.ntab');
-    if (!btn) return;
-    document.querySelectorAll('.pg').forEach(p  => p.classList.remove('on'));
-    document.querySelectorAll('.ntab').forEach(b => b.classList.remove('on'));
-    document.getElementById('pg-' + btn.dataset.page).classList.add('on');
-    btn.classList.add('on');
-  });
-
-  // ── MONTAR ──────────────────────────────────────────────────
-  buildI(); buildR(); buildA();
-
+function showError(err) {
   const ld = document.getElementById('loading');
+  if (!ld) return;
+  ld.innerHTML = `
+    <div style="max-width:360px;padding:32px 28px;text-align:center;font-family:'DM Sans',sans-serif;">
+      <div style="font-family:'Fraunces',serif;font-style:italic;font-weight:900;
+                  font-size:44px;letter-spacing:-0.03em;color:#F5EDDC;line-height:1;
+                  margin-bottom:18px;">
+        Sem <em style="color:#B4321A;font-style:italic;">dados</em>.
+      </div>
+      <div style="width:48px;height:2px;background:#B4321A;margin:0 auto 22px"></div>
+      <pre style="font-family:'JetBrains Mono',monospace;font-size:11px;
+                  color:#8A8070;white-space:pre-wrap;line-height:1.7;
+                  text-align:left;background:#13110F;border:1px solid rgba(245,237,220,0.08);
+                  border-radius:10px;padding:14px 16px;">${err.message}</pre>
+    </div>`;
+  ld.style.opacity = 1;
+  ld.style.pointerEvents = 'auto';
+}
+
+let CSV;
+try {
+  CSV = await loadCSV();
+} catch (err) {
+  showError(err);
+  return;
+}
+
+/* Nota: se quiser fixar um único nome de arquivo, troque o bloco acima por:
+     const CSV = await (await fetch('seu_arquivo.csv')).text();
+*/
+
+
+/* ═══════════════════════════════════════════════════════════════
+   CONFIG
+   ═══════════════════════════════════════════════════════════════ */
+const MITOU_THRESHOLD = 80;
+const TOTAL_ROUNDS = 38;
+
+/* Curated distinctive color palette — desaturated, editorial */
+const TEAM_COLORS = {
+  'Sons of Númenor': '#E8B041',
+  'Ironverdict':     '#B4C5D9',
+  'Icebergteam':     '#8FC5D4',
+  'Andorinha Jr':    '#D79468',
+  'Andorinha':       '#C86F5C',
+  'CEEC':            '#9BBE7A',
+  'Varelitas':       '#D4A562',
+  'Otopatamá':       '#A69AC9',
+  'Lobonegro':       '#7A7566',
+};
+
+const fmt = v => v.toFixed(2);
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+
+/* ═══════════════════════════════════════════════════════════════
+   PARSE DATA
+   ═══════════════════════════════════════════════════════════════ */
+const DATA = CSV.trim().split('\n').slice(1).map(l => {
+  const [r, t, p] = l.split(',');
+  return { rnd: +r, team: t.trim(), pts: parseFloat(p) };
+});
+
+const TEAMS = [...new Set(DATA.map(d => d.team))];
+const ROUNDS = [...new Set(DATA.map(d => d.rnd))].sort((a,b) => a-b);
+const LAST_RND = ROUNDS[ROUNDS.length - 1];
+
+/* Stats per team */
+const STATS = {};
+TEAMS.forEach(t => {
+  const arr = DATA.filter(d => d.team === t).map(d => d.pts);
+  const tot = arr.reduce((a,b) => a+b, 0);
+  STATS[t] = {
+    pts: arr,
+    total: tot,
+    avg: tot / arr.length,
+    best: Math.max(...arr),
+    worst: Math.min(...arr),
+  };
+});
+
+/* Running totals per round — for position tracking */
+const positionByRound = {}; // { round: [ {team, total}, ... sorted desc ] }
+ROUNDS.forEach(r => {
+  const totals = TEAMS.map(t => {
+    const sum = DATA.filter(d => d.team === t && d.rnd <= r)
+                    .reduce((a,b) => a + b.pts, 0);
+    return { team: t, total: sum };
+  }).sort((a,b) => b.total - a.total);
+  positionByRound[r] = totals;
+});
+
+/* Current classification (after last round) */
+const CL = positionByRound[LAST_RND].slice()
+  .map(x => ({ ...x, avg: STATS[x.team].avg }));
+
+/* Position deltas (last vs previous round) */
+const prevRnd = ROUNDS[ROUNDS.length - 2] ?? LAST_RND;
+const posNow = Object.fromEntries(positionByRound[LAST_RND].map((x,i) => [x.team, i+1]));
+const posPrev = Object.fromEntries(positionByRound[prevRnd].map((x,i) => [x.team, i+1]));
+const DELTA = Object.fromEntries(TEAMS.map(t => [t, posPrev[t] - posNow[t]])); // +=up
+
+/* Hall of Fame (top 5 single-round scores) */
+const TOP_SCORES = [...DATA].sort((a,b) => b.pts - a.pts).slice(0, 5);
+
+/* MVP / Lanterna / Mitou counts per team */
+const CNT = { mvp:{}, lant:{}, mitou:{} };
+TEAMS.forEach(t => { CNT.mvp[t] = CNT.lant[t] = CNT.mitou[t] = 0; });
+ROUNDS.forEach(r => {
+  const rd = DATA.filter(d => d.rnd === r).sort((a,b) => b.pts - a.pts);
+  if (rd.length) { CNT.mvp[rd[0].team]++; CNT.lant[rd[rd.length-1].team]++; }
+  rd.forEach(d => { if (d.pts >= MITOU_THRESHOLD) CNT.mitou[d.team]++; });
+});
+
+/* ═══════════════════════════════════════════════════════════════
+   RENDER — MASTHEAD
+   ═══════════════════════════════════════════════════════════════ */
+$('#mast-rod').textContent = String(LAST_RND).padStart(2,'0');
+$('#mast-prog').textContent = `${LAST_RND}/${TOTAL_ROUNDS} · ${Math.round(LAST_RND/TOTAL_ROUNDS*100)}%`;
+requestAnimationFrame(() => {
+  $('#mast-bar').style.width = (LAST_RND / TOTAL_ROUNDS * 100).toFixed(1) + '%';
+});
+
+/* ═══════════════════════════════════════════════════════════════
+   UTIL · count-up animation
+   ═══════════════════════════════════════════════════════════════ */
+function countUp(el, to, decimals = 2, dur = 1400) {
+  if (!el) return;
+  const t0 = performance.now();
+  const ease = t => 1 - Math.pow(1 - t, 3);
+  (function frame(now){
+    const p = Math.min((now - t0) / dur, 1);
+    el.textContent = (to * ease(p)).toFixed(decimals);
+    if (p < 1) requestAnimationFrame(frame);
+  })(t0);
+}
+
+function animWidth(el, pct, delay = 0) {
+  if (!el) return;
+  setTimeout(() => { el.style.width = pct + '%'; }, delay);
+}
+
+/* Build tiny SVG sparkline (10w × 22h mini chart) */
+function sparkline(values, color, h = 22) {
+  const w = 80;
+  const mn = Math.min(...values), mx = Math.max(...values);
+  const rng = (mx - mn) || 1;
+  const step = w / Math.max(values.length - 1, 1);
+  const pts = values.map((v,i) => `${(i*step).toFixed(1)},${(h - 3 - ((v-mn)/rng)*(h-6)).toFixed(1)}`).join(' ');
+  const last = values[values.length - 1];
+  const lx = w;
+  const ly = h - 3 - ((last-mn)/rng)*(h-6);
+  return `<svg class="st-spark" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none">
+    <polyline points="${pts}" fill="none" stroke="${color}" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+    <circle cx="${lx}" cy="${ly}" r="1.8" fill="${color}"/>
+  </svg>`;
+}
+
+/* Format delta symbol */
+function deltaSym(d) {
+  if (d > 0)  return { cls:'up',   t:`▲${d}` };
+  if (d < 0)  return { cls:'down', t:`▼${-d}` };
+  return         { cls:'',     t:'—' };
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RENDER · PAGE 1 — MATCHDAY
+   ═══════════════════════════════════════════════════════════════ */
+function renderMatchday() {
+
+  /* Feature: biggest score of the season */
+  const top = TOP_SCORES[0];
+  $('#feature-wm').textContent = String(LAST_RND).padStart(2,'0');
+  $('#kicker-meta').textContent = `Liga Supertecnicos · 2026`;
+  $('#feature-head').innerHTML = `Assim jogou<br><em>${top.team}.</em>`;
+  $('#feature-when').textContent = `Rodada ${top.rnd}`;
+  countUp($('#fsc-num'), top.pts, 2, 1700);
+
+  /* Dual: Lanterna + Mitou */
+  const last = CL[CL.length - 1];
+  $('#col-lant-name').textContent = last.team;
+  $('#col-lant-avg').textContent = fmt(last.avg);
+  countUp($('#col-lant-pts'), last.total, 0, 1200);
+
+  const totMitou = Object.values(CNT.mitou).reduce((a,b) => a+b, 0);
+  countUp($('#col-mitou-n'), totMitou, 0, 1100);
+
+  /* Standings */
+  const maxTotal = CL[0].total;
+  const stEl = $('#standings');
+  stEl.innerHTML = `
+    <div class="st-head">
+      <div>#</div><div>Δ</div><div>Clube</div><div>Forma</div><div>Pontos</div>
+    </div>` +
+    CL.map((t, i) => {
+      const rank = i + 1;
+      const cls = rank === 1 ? 'p1' : rank === 2 ? 'p2' : rank === 3 ? 'p3' : rank === CL.length ? 'pL' : '';
+      const d = deltaSym(DELTA[t.team] ?? 0);
+      const color = TEAM_COLORS[t.team];
+      const mitCnt = CNT.mitou[t.team];
+      const mvpCnt = CNT.mvp[t.team];
+
+      return `
+        <div class="st-row ${cls}">
+          <span class="st-flag" style="background:${color}"></span>
+          <div class="st-pos nums">${String(rank).padStart(2,'0')}</div>
+          <div class="st-delta ${d.cls} mono">${d.t}</div>
+          <div class="st-team">
+            <div class="st-name">${t.team}</div>
+            <div class="st-meta">
+              <span>Média ${fmt(t.avg)}</span>
+              ${mvpCnt ? `<span class="st-badge">★${mvpCnt}</span>` : ''}
+              ${mitCnt ? `<span class="st-badge">※${mitCnt}</span>` : ''}
+            </div>
+          </div>
+          <div>${sparkline(STATS[t.team].pts, color)}</div>
+          <div class="st-pts nums">${fmt(t.total)}<small>PONTOS</small></div>
+        </div>`;
+    }).join('');
+
+  /* Hall of Fame */
+  $('#hof').innerHTML = TOP_SCORES.map((s, i) => `
+    <div class="hof-row">
+      <div class="hof-rank">${String(i+1).padStart(2,'0')}</div>
+      <div class="hof-body">
+        <div class="hof-name">${s.team}</div>
+        <div class="hof-rnd">Rodada ${String(s.rnd).padStart(2,'0')} · ${s.pts >= MITOU_THRESHOLD ? 'MITOU' : 'N/A'}</div>
+      </div>
+      <div class="hof-pts nums">${fmt(s.pts)}</div>
+    </div>`).join('');
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RENDER · PAGE 2 — GAMEWEEK
+   ═══════════════════════════════════════════════════════════════ */
+let currentRnd = LAST_RND;
+
+function renderPills() {
+  $('#pills').innerHTML = ROUNDS.map(r => `
+    <button class="pill ${r === currentRnd ? 'on' : ''}" data-r="${r}">
+      <span class="pill-n">${String(r).padStart(2,'0')}</span>Rodada
+    </button>`).join('');
+}
+
+function centerPill() {
+  const on = $('.pill.on');
+  if (on) on.scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
+}
+
+function selectRound(r) {
+  currentRnd = r;
+  $$('.pill').forEach(p => p.classList.toggle('on', +p.dataset.r === r));
+  centerPill();
+  renderGameweekBody();
+}
+
+function renderGameweekBody() {
+  const r = currentRnd;
+  const rd = DATA.filter(d => d.rnd === r).sort((a,b) => b.pts - a.pts);
+  if (!rd.length) return;
+
+  const mvp = rd[0], last = rd[rd.length - 1];
+  const avg = rd.reduce((a,b) => a + b.pts, 0) / rd.length;
+  const nMit = rd.filter(d => d.pts >= MITOU_THRESHOLD).length;
+  const max = mvp.pts;
+
+  /* Narrative kicker — small editorial flourish */
+  let narrative = 'Resumo da rodada';
+  if (nMit >= 5) narrative = 'Uma rodada de explosões';
+  else if (nMit === 0) narrative = 'Uma rodada avara';
+  else if (max >= 100) narrative = 'O dia de uma estrela';
+  else if (last.pts <= 40) narrative = 'Uma hecatombe isolada';
+
+  $('#gw-body').innerHTML = `
+    <div class="gw-head">
+      <div class="gw-kick">Rodada ${String(r).padStart(2,'0')} · ${narrative}</div>
+      <h2 class="gw-title">
+        <em>${mvp.team}</em><br>
+        venceu a rodada.
+      </h2>
+    </div>
+
+    <div class="strip">
+      <div class="strip-cell gold">
+        <div class="strip-lbl">MVP</div>
+        <div class="strip-val nums" id="strip-mvp">0.00</div>
+      </div>
+      <div class="strip-cell">
+        <div class="strip-lbl">Média</div>
+        <div class="strip-val nums" id="strip-avg">0.00</div>
+      </div>
+      <div class="strip-cell blood">
+        <div class="strip-lbl">Lanterna</div>
+        <div class="strip-val nums" id="strip-last">0.00</div>
+      </div>
+    </div>
+
+    <div class="rule-line"><span class="rule-label">Resultado Completo</span></div>
+
+    <div class="gw-list">
+      ${rd.map((d, i) => {
+        const pct = (d.pts / max * 100).toFixed(1);
+        const isWin = i === 0, isLast = i === rd.length - 1;
+        const cls = isWin ? 'win' : isLast ? 'last' : '';
+        const delta = d.pts - avg;
+        const dStr = (delta >= 0 ? '+' : '') + delta.toFixed(1);
+        const dCls = delta >= 0 ? 'pos' : 'neg';
+        const mitTag = d.pts >= MITOU_THRESHOLD ? `<span class="mini-flag">Mitou</span>` : '';
+
+        return `
+          <div class="gw-item ${cls}">
+            <div class="gwi-pos">${String(i+1).padStart(2,'0')}</div>
+            <div class="gwi-team">
+              <div class="gwi-name">${d.team}${mitTag}</div>
+              <div class="gwi-delta ${dCls}">${dStr} vs média</div>
+            </div>
+            <div class="gwi-bar"><div class="gwi-bar-fill" id="gfill-${i}"></div></div>
+            <div class="gwi-pts nums" id="gpts-${i}">0.00</div>
+          </div>`;
+      }).join('')}
+    </div>
+  `;
+
+  /* Animations */
+  countUp($('#strip-mvp'), mvp.pts, 2, 1100);
+  countUp($('#strip-avg'), avg, 2, 1000);
+  countUp($('#strip-last'), last.pts, 2, 1000);
+
+  rd.forEach((d, i) => {
+    const pct = (d.pts / max * 100).toFixed(1);
+    animWidth($(`#gfill-${i}`), pct, 50 + i * 55);
+    countUp($(`#gpts-${i}`), d.pts, 2, 900 + i * 35);
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RENDER · PAGE 3 — ANALYSIS
+   ═══════════════════════════════════════════════════════════════ */
+let chartHidden = new Set(); // teams currently hidden
+
+function renderAnalysis() {
+  const totM = Object.values(CNT.mvp).reduce((a,b) => a+b, 0);
+  const totI = Object.values(CNT.mitou).reduce((a,b) => a+b, 0);
+  const totL = Object.values(CNT.lant).reduce((a,b) => a+b, 0);
+
+  $('#triptych').innerHTML = `
+    <div class="trop g">
+      <div class="trop-lbl">★ MVPs</div>
+      <div class="trop-big nums">${totM}</div>
+      <div class="trop-sub">rodadas<br>vencidas</div>
+    </div>
+    <div class="trop f">
+      <div class="trop-lbl">※ Mitadas</div>
+      <div class="trop-big nums">${totI}</div>
+      <div class="trop-sub">pontuações<br>80+</div>
+    </div>
+    <div class="trop b">
+      <div class="trop-lbl">◉ Lanternas</div>
+      <div class="trop-big nums">${totL}</div>
+      <div class="trop-sub">últimas<br>colocações</div>
+    </div>`;
+
+  renderChart();
+
+  /* Honor roll — sorted by MVP count, then mitou, then total */
+  const ord = [...CL].sort((a,b) => {
+    if (CNT.mvp[b.team] !== CNT.mvp[a.team])     return CNT.mvp[b.team] - CNT.mvp[a.team];
+    if (CNT.mitou[b.team] !== CNT.mitou[a.team]) return CNT.mitou[b.team] - CNT.mitou[a.team];
+    return b.total - a.total;
+  });
+
+  const cell = (n, cls) => n > 0
+    ? `<div class="honor-cell ${cls}">${n}</div>`
+    : `<div class="honor-cell hc-0">—</div>`;
+
+  $('#honor').innerHTML = `
+    <div class="honor-head">
+      <div>Clube</div><div>★</div><div>※</div><div>◉</div><div>Pts</div>
+    </div>` +
+    ord.map(t => `
+      <div class="honor-row">
+        <div class="honor-name">${t.team}</div>
+        ${cell(CNT.mvp[t.team], 'hc-g')}
+        ${cell(CNT.mitou[t.team], 'hc-f')}
+        ${cell(CNT.lant[t.team], 'hc-b')}
+        <div class="honor-pts nums">${fmt(t.total)}</div>
+      </div>`).join('');
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LINE CHART — evolution of positions over rounds
+   ═══════════════════════════════════════════════════════════════ */
+function renderChart() {
+  const W = 500, H = 280;
+  const PAD_L = 34, PAD_R = 22, PAD_T = 16, PAD_B = 28;
+  const iw = W - PAD_L - PAD_R;
+  const ih = H - PAD_T - PAD_B;
+  const nR = ROUNDS.length;
+  const nT = TEAMS.length;
+
+  const x = i => PAD_L + (i / (nR - 1)) * iw;
+  const y = pos => PAD_T + ((pos - 1) / (nT - 1)) * ih;
+
+  /* Team → position array over rounds */
+  const teamPos = {};
+  TEAMS.forEach(t => {
+    teamPos[t] = ROUNDS.map(r => {
+      const list = positionByRound[r];
+      return list.findIndex(x => x.team === t) + 1;
+    });
+  });
+
+  /* Grid + axes */
+  let grid = '';
+  for (let p = 1; p <= nT; p++) {
+    const yy = y(p);
+    grid += `<line x1="${PAD_L}" y1="${yy}" x2="${W-PAD_R}" y2="${yy}" stroke="rgba(245,237,220,0.06)" stroke-width="1"/>`;
+    grid += `<text x="${PAD_L - 8}" y="${yy + 3}" text-anchor="end" font-family="JetBrains Mono" font-size="9" fill="#8A8070" font-weight="700">${p}º</text>`;
+  }
+  /* Round marks — every 2 */
+  ROUNDS.forEach((r, i) => {
+    if (r === 1 || r === nR || r % 2 === 0) {
+      grid += `<text x="${x(i)}" y="${H - 10}" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#8A8070" font-weight="700">R${String(r).padStart(2,'0')}</text>`;
+    }
+  });
+
+  /* Smoothing — cardinal-like quadratic */
+  function smoothPath(pts) {
+    if (pts.length < 2) return '';
+    let d = `M${pts[0][0]},${pts[0][1]}`;
+    for (let i = 1; i < pts.length; i++) {
+      const [x0,y0] = pts[i-1], [x1,y1] = pts[i];
+      const cx = (x0 + x1) / 2;
+      d += ` Q${cx},${y0} ${cx},${(y0+y1)/2}`;
+      d += ` Q${cx},${y1} ${x1},${y1}`;
+    }
+    return d;
+  }
+
+  /* Lines */
+  let lines = '';
+  TEAMS.forEach(t => {
+    const hidden = chartHidden.has(t);
+    const pts = teamPos[t].map((p, i) => [x(i), y(p)]);
+    const path = smoothPath(pts);
+    const color = TEAM_COLORS[t];
+    const opacity = hidden ? 0 : 1;
+    const sw = (posNow[t] === 1) ? 2.4 : 1.8;
+
+    lines += `<g data-team="${t}" style="opacity:${opacity};transition:opacity .3s">
+      <path d="${path}" fill="none" stroke="${color}" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.92"/>`;
+
+    /* End dot with label */
+    const [ex, ey] = pts[pts.length - 1];
+    lines += `<circle cx="${ex}" cy="${ey}" r="3" fill="${color}" stroke="#0A0908" stroke-width="1.5"/>`;
+    lines += `</g>`;
+  });
+
+  $('#chart').innerHTML = grid + lines;
+  $('#chart').setAttribute('viewBox', `0 0 ${W} ${H}`);
+
+  /* Legend */
+  $('#chart-legend').innerHTML = TEAMS.map(t => {
+    const off = chartHidden.has(t);
+    const short = t.length > 11 ? t.split(' ')[0] : t;
+    return `<div class="leg-chip ${off ? 'off' : ''}" data-team="${t}">
+      <span class="leg-dot" style="background:${TEAM_COLORS[t]}"></span>${short}
+    </div>`;
+  }).join('');
+
+  $$('.leg-chip').forEach(el => {
+    el.addEventListener('click', () => {
+      const t = el.dataset.team;
+      if (chartHidden.has(t)) chartHidden.delete(t);
+      else chartHidden.add(t);
+      renderChart();
+    });
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   NAV + PILL EVENTS
+   ═══════════════════════════════════════════════════════════════ */
+$('#nav').addEventListener('click', e => {
+  const btn = e.target.closest('.ntab');
+  if (!btn) return;
+  $$('.pg').forEach(p => p.classList.remove('on'));
+  $$('.ntab').forEach(b => b.classList.remove('on'));
+  $('#pg-' + btn.dataset.p).classList.add('on');
+  btn.classList.add('on');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+$('#pills').addEventListener('click', e => {
+  const p = e.target.closest('.pill');
+  if (p) selectRound(+p.dataset.r);
+});
+
+/* ═══════════════════════════════════════════════════════════════
+   BOOT
+   ═══════════════════════════════════════════════════════════════ */
+renderMatchday();
+renderPills();
+renderGameweekBody();
+renderAnalysis();
+
+/* Remove loading */
+setTimeout(() => {
+  const ld = $('#loading');
   ld.classList.add('out');
-  setTimeout(() => ld.remove(), 600);
+  setTimeout(() => ld.remove(), 550);
+}, 480);
 
 })();
 </script>

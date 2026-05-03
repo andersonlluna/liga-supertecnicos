@@ -253,43 +253,86 @@ body{
    P1 · TABELA · pódio + lista grande
    ════════════════════════════════════════════════════════════════ */
 
-/* PÓDIO */
+/* PÓDIO OLÍMPICO · degraus físicos com altura real */
 .podio{
-  display:grid; grid-template-columns:1fr 1.25fr 1fr;
-  gap:8px; align-items:end;
-  margin-bottom:8px;
+  display:grid; grid-template-columns:1fr 1.3fr 1fr;
+  gap:0; align-items:end;
+  padding:0 4px;
+  margin-bottom:0;
 }
 .pod{
-  padding:14px 10px 16px;
-  border-radius:14px; text-align:center;
-  background:var(--surface);
-  border:2px solid var(--border);
-  display:flex; flex-direction:column; align-items:center; justify-content:flex-end;
-  min-height:140px;
+  position:relative;
+  text-align:center;
+  border-radius:14px 14px 0 0;
+  padding:14px 8px 18px;
+  display:flex; flex-direction:column; align-items:center; justify-content:flex-start;
 }
-.pod1{border-color:var(--gold); background:var(--gold-bg); padding-top:18px; min-height:160px}
-.pod2{border-color:var(--border-3)}
-.pod3{border-color:var(--gold-bg-2); background:var(--gold-bg)}
+.pod1{
+  background:linear-gradient(180deg, var(--gold), var(--gold-deep));
+  height:212px;
+  margin:0 4px;
+  z-index:3;
+  box-shadow:0 -4px 20px color-mix(in srgb, var(--gold) 35%, transparent);
+}
+.pod2{
+  background:linear-gradient(180deg, #CBD5E1, #64748B);
+  height:170px;
+  margin-right:-4px;
+  z-index:2;
+  border-top-right-radius:0;
+}
+.pod3{
+  background:linear-gradient(180deg, var(--blood), var(--blood-deep));
+  height:148px;
+  margin-left:-4px;
+  z-index:2;
+  border-top-left-radius:0;
+}
+[data-theme="light"] .pod1{background:linear-gradient(180deg, var(--gold), var(--gold-deep))}
+[data-theme="light"] .pod2{background:linear-gradient(180deg, #94A3B8, #475569)}
+[data-theme="light"] .pod3{background:linear-gradient(180deg, var(--blood), var(--blood-deep))}
+
+/* medalha redonda no topo de cada degrau */
 .pod-medal{
-  font-weight:900; font-size:28px; line-height:1;
-  margin-bottom:8px; color:var(--text-2);
+  display:inline-flex; align-items:center; justify-content:center;
+  width:36px; height:36px;
+  background:rgba(10,22,40,.85); color:#FFF;
+  border-radius:50%;
+  font-weight:900; font-size:14px;
+  margin-bottom:10px;
+  border:2px solid #FFF;
+  flex-shrink:0;
 }
-.pod1 .pod-medal{color:var(--gold); font-size:38px}
-.pod2 .pod-medal{color:var(--text)}
-.pod3 .pod-medal{color:var(--gold)}
+.pod1 .pod-medal{width:42px; height:42px; font-size:16px}
+
 .pod-crest{margin-bottom:8px}
+.pod2 .pod-crest, .pod3 .pod-crest{transform:scale(.85)}
+
 .pod-name{
-  font-weight:800; font-size:14px; color:var(--text);
-  line-height:1.2; margin-bottom:6px;
+  font-weight:900; font-size:12px;
+  color:#0A1628; line-height:1.15;
+  margin-bottom:6px; padding:0 2px;
   display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;
   overflow:hidden;
+  text-shadow:0 1px 0 rgba(255,255,255,.15);
 }
-.pod1 .pod-name{font-size:16px}
+.pod1 .pod-name{font-size:14px}
+
 .pod-pts{
-  font-weight:900; font-size:22px; color:var(--gold);
-  line-height:1; letter-spacing:-.02em;
+  font-weight:900; font-size:15px;
+  color:#0A1628; letter-spacing:-.02em; line-height:1;
+  text-shadow:0 1px 0 rgba(255,255,255,.15);
 }
-.pod1 .pod-pts{font-size:30px}
+.pod1 .pod-pts{font-size:20px}
+
+/* base do pódio (chão) */
+.podio-base{
+  height:8px;
+  background:var(--surface-2);
+  border-radius:0 0 10px 10px;
+  margin:0 0 18px 0;
+  box-shadow:inset 0 2px 4px rgba(0,0,0,.2);
+}
 
 /* LISTA TABELA — 1 linha por time */
 .tab-list{display:flex; flex-direction:column; gap:8px}
@@ -686,6 +729,7 @@ body{
   <section class="pg on" id="pg-tabela">
     <div class="s-title">Pódio<span class="sub" id="round-info">—</span></div>
     <div class="podio" id="podio"></div>
+    <div class="podio-base"></div>
 
     <div class="s-title">Tabela completa</div>
     <div id="tab-host"></div>
@@ -909,7 +953,7 @@ function renderTabela(){
     if(!t) return '<div class="pod"></div>';
     return '<div class="pod ' + podClass[i] + '">'
       + '<div class="pod-medal">' + medals[i] + '</div>'
-      + '<div class="pod-crest">' + crestSVG(t.team, i===1 ? 'crest-md' : 'crest-sm') + '</div>'
+      + '<div class="pod-crest">' + crestSVG(t.team, 'crest-sm') + '</div>'
       + '<div class="pod-name">' + esc(t.team) + '</div>'
       + '<div class="pod-pts tnum">' + fmt(t.total) + '</div>'
       + '</div>';
